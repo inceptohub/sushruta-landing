@@ -90,40 +90,38 @@
 }
 
 @layer components {
-  /* Core Button Styles */
-  .btn {
-    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
-  }
-
+  /* Primary Action Buttons - Solid blue background, white text, darker blue on hover */
   .btn-primary {
-    @apply btn bg-primary text-primary-foreground hover:bg-primary/90;
+    @apply inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-medium bg-primary text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:pointer-events-none;
   }
 
+  /* Secondary Action Buttons - Text links with underline on hover */
   .btn-secondary {
-    @apply btn border border-input bg-background hover:bg-accent hover:text-accent-foreground;
+    @apply inline-flex items-center justify-center text-primary hover:underline transition-colors;
   }
 
   /* Query Box Styles */
   .query-box {
-    @apply w-full min-h-[200px] p-6 text-lg border border-input rounded-lg bg-card resize-none focus:outline-none focus:ring-2 focus:ring-ring placeholder:text-muted-foreground;
+    @apply w-full min-h-[200px] p-6 text-lg border border-gray-300 rounded-lg bg-white resize-none focus:outline-none focus:border-primary placeholder:text-muted-foreground transition-colors;
   }
 
-  /* Output Box Styles */
+  /* Content Containers - White background, rounded corners, subtle shadow */
   .output-box {
-    @apply bg-card border border-input rounded-lg p-6 space-y-4;
+    @apply bg-white border border-gray-200 rounded-lg p-6 space-y-4 shadow-sm;
   }
 
+  /* Input Display Box - Monospace for "code" representation */
   .input-box {
-    @apply bg-muted p-4 rounded font-mono text-sm whitespace-pre-wrap;
+    @apply bg-muted p-4 rounded-md font-mono text-sm whitespace-pre-wrap text-foreground;
   }
 
-  /* Navigation */
+  /* Navigation Links - Following exact specifications */
   .nav-link {
-    @apply text-muted-foreground hover:text-foreground transition-colors px-3 py-2 rounded-md text-sm font-medium;
+    @apply text-gray-600 hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium;
   }
 
   .nav-link.active {
-    @apply text-primary;
+    @apply text-primary font-semibold;
   }
 
   /* Layout Utilities */
@@ -135,9 +133,9 @@
     @apply min-h-screen py-12;
   }
 
-  /* Form Elements */
+  /* Form Elements - Light grey border, blue focus border */
   .form-input {
-    @apply w-full px-3 py-2 border border-input rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring;
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors;
   }
 
   .form-select {
@@ -148,13 +146,28 @@
     @apply form-input min-h-[120px] resize-y;
   }
 
-  /* Card Components */
+  /* Team Profile Cards - White background, rounded corners, subtle shadow */
   .team-card {
-    @apply bg-card border border-input rounded-lg p-6 text-center space-y-4;
+    @apply bg-white border border-gray-200 rounded-lg p-6 text-center space-y-4 shadow-sm;
   }
 
-  /* Example Prompts */
+  /* Example Prompts - Secondary action style */
   .example-prompt {
-    @apply text-sm text-primary hover:text-primary/80 cursor-pointer transition-colors;
+    @apply text-sm text-primary hover:text-blue-700 cursor-pointer transition-colors;
+  }
+
+  /* Scenario Labels - Supporting text style */
+  .scenario-label {
+    @apply text-sm text-muted-foreground uppercase tracking-wide font-medium;
+  }
+
+  /* Rationale Text - Supporting text style */
+  .rationale-text {
+    @apply text-sm text-muted-foreground;
+  }
+
+  /* Team Member Titles - Accent color for visual interest */
+  .team-title {
+    @apply text-sm text-primary font-medium;
   }
 }
