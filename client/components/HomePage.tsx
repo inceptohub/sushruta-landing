@@ -160,7 +160,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         )}
 
         {/* Keyboard Shortcut Hint */}
-        <p className="text-xs text-muted-foreground">
+        <p className="supporting-text">
           Press <kbd className="px-1 py-0.5 bg-muted rounded">⌘</kbd> + <kbd className="px-1 py-0.5 bg-muted rounded">Enter</kbd> to analyze
         </p>
       </div>
