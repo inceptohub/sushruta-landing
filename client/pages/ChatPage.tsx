@@ -11,6 +11,26 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  // Add global keyboard shortcut for Cmd/Ctrl+Enter
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+        e.preventDefault();
+        // Only send if input is non-empty and not loading
+        if (input.trim() && !isLoading) {
+          // Create a synthetic event for handleSubmit
+          const form = document.querySelector('form');
+          if (form) {
+            form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+          }
+        }
+      }
+    };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [input, isLoading]);
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
@@ -108,7 +128,7 @@ export default function ChatPage() {
                 <div
                   className={`max-w-3xl rounded-2xl shadow-lg ${
                     message.role === "user"
-                      ? "bg-primary text-white ml-12 px-6 py-4"
+                      ? "btn-primary text-white ml-12 px-6 py-4"
                       : "bg-white/80 backdrop-blur-md border border-white/30 text-foreground mr-12"
                   }`}
                 >
@@ -251,6 +271,14 @@ export default function ChatPage() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+                  e.preventDefault();
+                  if (input.trim() && !isLoading) {
+                    handleSubmit(e as any);
+                  }
+                }
+              }}
               placeholder="Type your medical question..."
               className="flex-1 border border-white/30 rounded-xl px-4 py-3 bg-white/70 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:bg-white/80 placeholder:text-foreground/50 transition-all duration-200 shadow-sm"
               disabled={isLoading}

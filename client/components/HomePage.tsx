@@ -87,9 +87,15 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             <textarea
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={handleKeyPress}
+              onKeyDown={(e) => {
+                if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+                  e.preventDefault();
+                  handleAsk();
+                }
+                handleKeyPress(e);
+              }}
               placeholder="Enter a clinical case, chief complaint, or question..."
-              className="w-full min-h-[160px] p-6 text-base border border-white/30 rounded-xl bg-white/70 backdrop-blur-md resize-none focus:outline-none focus:border-primary/50 focus:bg-white/80 placeholder:text-foreground/50 transition-all duration-200 shadow-lg"
+              className="w-full min-h-[160px] max-h-[160px] p-6 text-base border border-white/30 rounded-xl bg-white/70 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:bg-white/80 placeholder:text-foreground/50 transition-all duration-200 shadow-lg"
               
             />
             <button
@@ -120,22 +126,20 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           </div>
         </div>
 
-        {/* Keyboard Shortcut Hint */}
-        {query.trim() && (
-          <div className="text-center">
-            <p className="text-foreground/50 text-sm">
-              Press{" "}
-              <kbd className="px-2 py-1 bg-white/20 rounded text-xs font-mono">
-                ⌘
-              </kbd>{" "}
-              +{" "}
-              <kbd className="px-2 py-1 bg-white/20 rounded text-xs font-mono">
-                Enter
-              </kbd>{" "}
-              to analyze
-            </p>
-          </div>
-        )}
+        {/* Keyboard Shortcut Hint (always visible to prevent layout shift) */}
+        <div className="text-center min-h-[28px]">
+          <p className={`text-foreground/50 text-sm transition-opacity duration-200 ${query.trim() ? 'opacity-100' : 'opacity-40'}`}>
+            Press{" "}
+            <kbd className="px-2 py-1 bg-white/20 rounded text-xs font-mono">
+              ⌘
+            </kbd>{" "}
+            +{" "}
+            <kbd className="px-2 py-1 bg-white/20 rounded text-xs font-mono">
+              Enter
+            </kbd>{" "}
+            to analyze
+          </p>
+        </div>
       </div>
 
 
