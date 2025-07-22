@@ -68,7 +68,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
           {/* Example Prompts */}
           <div className="space-y-3">
-            <p className="text-sm text-muted-foreground">Try these examples:</p>
+            <p className="supporting-text">Try these examples:</p>
             <div className="grid gap-2">
               {examplePrompts.map((prompt, index) => (
                 <button
