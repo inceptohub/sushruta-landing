@@ -138,7 +138,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
       </div>
 
       {/* Fixed position results area to prevent layout shift */}
-      <div className="w-full max-w-4xl mt-8">
+      <div className="w-full max-w-2xl mt-8">
         {/* Analysis State */}
         {isAnalyzing && (
           <div className="bg-white/80 backdrop-blur-md border border-white/30 rounded-xl p-6 shadow-lg">
