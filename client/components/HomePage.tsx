@@ -108,21 +108,21 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 Input: {query}
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <div>
-                  <h4 className="font-medium mb-2">Differential Diagnosis:</h4>
-                  <ul className="space-y-1 text-sm">
-                    <li className="flex justify-between">
-                      <span>1. Pulmonary Embolism</span>
-                      <span className="text-muted-foreground">High probability</span>
+                  <h4 className="font-semibold mb-3 text-foreground">Differential Diagnosis:</h4>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex justify-between items-center p-2 bg-white/30 rounded-lg">
+                      <span className="font-medium">1. Pulmonary Embolism</span>
+                      <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full">High probability</span>
                     </li>
-                    <li className="flex justify-between">
-                      <span>2. Acute Coronary Syndrome</span>
-                      <span className="text-muted-foreground">Moderate probability</span>
+                    <li className="flex justify-between items-center p-2 bg-white/30 rounded-lg">
+                      <span className="font-medium">2. Acute Coronary Syndrome</span>
+                      <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">Moderate probability</span>
                     </li>
-                    <li className="flex justify-between">
-                      <span>3. Pneumothorax</span>
-                      <span className="text-muted-foreground">Moderate probability</span>
+                    <li className="flex justify-between items-center p-2 bg-white/30 rounded-lg">
+                      <span className="font-medium">3. Pneumothorax</span>
+                      <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">Moderate probability</span>
                     </li>
                   </ul>
                 </div>
