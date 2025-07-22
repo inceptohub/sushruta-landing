@@ -135,9 +135,9 @@
     @apply min-h-screen py-12;
   }
 
-  /* Form Elements - Light grey border, blue focus border */
+  /* Form Elements - Glass morphism style */
   .form-input {
-    @apply w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors;
+    @apply w-full px-4 py-3 border border-white/30 rounded-lg bg-white/70 backdrop-blur-md text-foreground placeholder:text-foreground/50 focus:outline-none focus:border-primary/50 focus:bg-white/80 transition-all duration-200;
   }
 
   .form-select {
@@ -148,28 +148,28 @@
     @apply form-input min-h-[120px] resize-y;
   }
 
-  /* Team Profile Cards - White background, rounded corners, subtle shadow */
+  /* Team Profile Cards - Enhanced glass effect */
   .team-card {
-    @apply bg-white border border-gray-200 rounded-lg p-6 text-center space-y-4 shadow-sm;
+    @apply bg-white/80 backdrop-blur-md border border-white/30 rounded-xl p-6 text-center space-y-4 shadow-lg hover:shadow-xl transition-all duration-200;
   }
 
-  /* Example Prompts - Secondary action style */
+  /* Example Prompts - Interactive glass buttons */
   .example-prompt {
-    @apply text-sm text-primary hover:text-blue-700 cursor-pointer transition-colors;
+    @apply text-sm bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg p-3 text-foreground hover:bg-white/30 hover:text-primary cursor-pointer transition-all duration-200;
   }
 
-  /* Scenario Labels - Supporting text style */
+  /* Scenario Labels - Clean, modern style */
   .scenario-label {
-    @apply text-sm text-muted-foreground uppercase tracking-wide font-medium;
+    @apply text-xs text-foreground/60 uppercase tracking-wider font-semibold bg-white/30 backdrop-blur-sm px-3 py-1 rounded-full inline-block;
   }
 
-  /* Rationale Text - Supporting text style */
+  /* Rationale Text - Enhanced readability */
   .rationale-text {
-    @apply text-sm text-muted-foreground;
+    @apply text-sm text-foreground/70 leading-relaxed;
   }
 
-  /* Team Member Titles - Accent color for visual interest */
+  /* Team Member Titles - Professional accent */
   .team-title {
-    @apply text-sm text-primary font-medium;
+    @apply text-sm text-primary font-semibold;
   }
 }
