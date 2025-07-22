@@ -62,32 +62,32 @@
     min-height: 100vh;
   }
 
-  /* Typography Hierarchy - Exact Guidelines */
+  /* Typography Hierarchy - Modern, Clean Style */
   h1 {
-    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-tight;
   }
 
   h2 {
-    @apply text-3xl font-bold tracking-tight text-foreground;
+    @apply text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-foreground;
   }
 
   h3 {
     @apply text-xl font-semibold tracking-tight text-foreground;
   }
 
-  /* Body Text - Regular size, normal weight */
+  /* Body Text - Clean, readable */
   p {
-    @apply text-lg font-normal leading-7 text-foreground;
+    @apply text-base md:text-lg font-normal leading-relaxed text-foreground/80;
   }
 
-  /* Supporting Text - Smaller, less critical information */
+  /* Supporting Text - Subtle, secondary information */
   .supporting-text {
-    @apply text-sm font-normal text-muted-foreground;
+    @apply text-sm font-normal text-foreground/60;
   }
 
-  /* Links - Professional Blue */
+  /* Links - Professional teal */
   a {
-    @apply text-primary hover:underline transition-colors;
+    @apply text-primary hover:text-primary/80 transition-colors;
   }
 }
 
