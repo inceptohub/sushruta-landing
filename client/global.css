@@ -60,24 +60,30 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Typography Hierarchy */
+  /* Typography Hierarchy - Exact Guidelines */
   h1 {
-    @apply text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-foreground;
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground;
   }
 
   h2 {
-    @apply text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-foreground;
+    @apply text-3xl font-bold tracking-tight text-foreground;
   }
 
   h3 {
-    @apply text-xl md:text-2xl font-semibold tracking-tight text-foreground;
+    @apply text-xl font-semibold tracking-tight text-foreground;
   }
 
+  /* Body Text - Regular size, normal weight */
   p {
-    @apply leading-7 text-muted-foreground;
+    @apply text-lg font-normal leading-7 text-foreground;
   }
 
-  /* Links */
+  /* Supporting Text - Smaller, less critical information */
+  .supporting-text {
+    @apply text-sm font-normal text-muted-foreground;
+  }
+
+  /* Links - Professional Blue */
   a {
     @apply text-primary hover:underline transition-colors;
   }
