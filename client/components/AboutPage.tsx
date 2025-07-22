@@ -90,7 +90,7 @@ export default function AboutPage() {
                 
                 <div className="text-center">
                   <h3 className="font-semibold text-foreground">{member.name}</h3>
-                  <p className="text-sm text-primary font-medium mb-3">{member.title}</p>
+                  <p className="team-title mb-3">{member.title}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed text-left">
                     {member.bio}
                   </p>
