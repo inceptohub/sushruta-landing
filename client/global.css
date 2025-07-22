@@ -58,7 +58,7 @@
   body {
     @apply text-foreground font-sans antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background: linear-gradient(135deg, #4ade80 0%, #22d3ee 25%, #a7f3d0 50%, #f0fdf4 100%);
+    background: linear-gradient(180deg, #10b981 0%, #06b6d4 30%, #a7f3d0 70%, #ecfdf5 100%);
     min-height: 100vh;
   }
 
