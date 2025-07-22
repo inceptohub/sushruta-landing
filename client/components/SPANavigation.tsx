@@ -34,7 +34,7 @@ export default function SPANavigation({ currentSection, onNavigate }: SPANavigat
   }, [isMenuOpen]);
 
   return (
-    <nav className="bg-background border-b border-border sticky top-0 z-50">
+    <nav className="bg-white/70 backdrop-blur-md border-b border-white/20 sticky top-0 z-50">
       <div className="container">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
