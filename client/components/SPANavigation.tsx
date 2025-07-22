@@ -76,7 +76,7 @@ export default function SPANavigation({ currentSection, onNavigate }: SPANavigat
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-border bg-background">
+          <div className="md:hidden border-t border-white/20 bg-white/80 backdrop-blur-md">
             <div className="py-2 space-y-1">
               {navigation.map((item) => (
                 <button
