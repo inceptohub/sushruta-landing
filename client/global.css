@@ -60,10 +60,13 @@
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
-    background-image:
-      linear-gradient(#0000 30%, #f6f5f3),
-      radial-gradient(circle at 0%, #8dd66c52, #fff0),
-      radial-gradient(circle at 90% -10%, #00b8b1, #8dd66cba 22%, #e9e9eb00 89%);
+    background: linear-gradient(135deg, 
+      #e0f2fe 0%,     /* Light blue scrubs */
+      #b3e5fc 25%,    /* Soft blue */
+      #81c784 50%,    /* Medical green */
+      #a5d6a7 75%,    /* Light green scrubs */
+      #e8f5e8 100%    /* Very light green */
+    );
     min-height: 100vh;
     position: relative;
   }
