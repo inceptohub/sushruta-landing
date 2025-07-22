@@ -58,8 +58,9 @@
   body {
     @apply text-foreground font-sans antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background: linear-gradient(180deg, #10b981 0%, #06b6d4 30%, #a7f3d0 70%, #ecfdf5 100%);
+    background-image: linear-gradient(#0000 30%, #f6f5f3), radial-gradient(circle at 0%, #8dd66c52, #fff0), radial-gradient(circle at 90% -10%, #00b8b1, #8dd66cba 22%, #e9e9eb00 89%);
     min-height: 100vh;
+    position: relative;
   }
 
   /* Typography Hierarchy - Modern, Clean Style */
