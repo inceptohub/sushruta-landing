@@ -56,8 +56,10 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply text-foreground font-sans antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+    background: linear-gradient(135deg, #4ade80 0%, #22d3ee 25%, #a7f3d0 50%, #f0fdf4 100%);
+    min-height: 100vh;
   }
 
   /* Typography Hierarchy - Exact Guidelines */
