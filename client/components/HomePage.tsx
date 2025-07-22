@@ -104,31 +104,41 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 </span>
               </div>
 
-              <div className="input-box">
-                Input: {query}
-              </div>
+              <div className="input-box">Input: {query}</div>
 
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-3 text-foreground">Differential Diagnosis:</h4>
+                  <h4 className="font-semibold mb-3 text-foreground">
+                    Differential Diagnosis:
+                  </h4>
                   <ul className="space-y-2 text-sm">
                     <li className="flex justify-between items-center p-2 bg-white/30 rounded-lg">
                       <span className="font-medium">1. Pulmonary Embolism</span>
-                      <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full">High probability</span>
+                      <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full">
+                        High probability
+                      </span>
                     </li>
                     <li className="flex justify-between items-center p-2 bg-white/30 rounded-lg">
-                      <span className="font-medium">2. Acute Coronary Syndrome</span>
-                      <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">Moderate probability</span>
+                      <span className="font-medium">
+                        2. Acute Coronary Syndrome
+                      </span>
+                      <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">
+                        Moderate probability
+                      </span>
                     </li>
                     <li className="flex justify-between items-center p-2 bg-white/30 rounded-lg">
                       <span className="font-medium">3. Pneumothorax</span>
-                      <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">Moderate probability</span>
+                      <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">
+                        Moderate probability
+                      </span>
                     </li>
                   </ul>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold mb-3 text-foreground">Recommended Actions:</h4>
+                  <h4 className="font-semibold mb-3 text-foreground">
+                    Recommended Actions:
+                  </h4>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-center p-2 bg-white/30 rounded-lg">
                       <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
@@ -150,12 +160,15 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold mb-3 text-foreground">Clinical Rationale:</h4>
+                  <h4 className="font-semibold mb-3 text-foreground">
+                    Clinical Rationale:
+                  </h4>
                   <div className="p-3 bg-white/40 rounded-lg">
                     <p className="text-sm text-foreground/80 leading-relaxed">
-                      Young female with acute chest pain and dyspnea requires immediate
-                      evaluation for life-threatening conditions. PE risk factors should
-                      be assessed given the acute presentation.
+                      Young female with acute chest pain and dyspnea requires
+                      immediate evaluation for life-threatening conditions. PE
+                      risk factors should be assessed given the acute
+                      presentation.
                     </p>
                   </div>
                 </div>
@@ -175,7 +188,8 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
         {/* Keyboard Shortcut Hint */}
         <p className="supporting-text">
-          Press <kbd className="px-1 py-0.5 bg-muted rounded">⌘</kbd> + <kbd className="px-1 py-0.5 bg-muted rounded">Enter</kbd> to analyze
+          Press <kbd className="px-1 py-0.5 bg-muted rounded">⌘</kbd> +{" "}
+          <kbd className="px-1 py-0.5 bg-muted rounded">Enter</kbd> to analyze
         </p>
       </div>
     </div>

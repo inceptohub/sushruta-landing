@@ -6,7 +6,10 @@ interface SPANavigationProps {
   onNavigate: (section: string) => void;
 }
 
-export default function SPANavigation({ currentSection, onNavigate }: SPANavigationProps) {
+export default function SPANavigation({
+  currentSection,
+  onNavigate,
+}: SPANavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigation = [

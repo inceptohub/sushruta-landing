@@ -48,7 +48,10 @@ export default function SPA() {
 
   return (
     <div className="min-h-screen">
-      <SPANavigation currentSection={currentSection} onNavigate={handleNavigate} />
+      <SPANavigation
+        currentSection={currentSection}
+        onNavigate={handleNavigate}
+      />
       <main className="transition-all duration-300 ease-in-out">
         {renderCurrentSection()}
       </main>

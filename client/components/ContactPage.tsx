@@ -5,7 +5,7 @@ export default function ContactPage() {
     fullName: "",
     email: "",
     role: "",
-    message: ""
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -13,20 +13,24 @@ export default function ContactPage() {
   const roles = [
     "Attending Physician",
     "Resident",
-    "Medical Student", 
+    "Medical Student",
     "Nurse Practitioner",
     "Physician Assistant",
     "Healthcare Administrator",
     "Medical Educator",
     "Researcher",
-    "Other"
+    "Other",
   ];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -47,18 +51,26 @@ export default function ContactPage() {
       <div className="page-section flex items-center justify-center">
         <div className="container max-w-2xl text-center space-y-6">
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            <svg
+              className="w-8 h-8 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
             </svg>
           </div>
           <h1 className="text-3xl">Message Sent Successfully</h1>
           <p className="text-lg text-muted-foreground">
-            Thank you for your message. Our team will review your inquiry and respond within 24-48 hours.
+            Thank you for your message. Our team will review your inquiry and
+            respond within 24-48 hours.
           </p>
-          <button 
-            onClick={() => setIsSubmitted(false)}
-            className="btn-primary"
-          >
+          <button onClick={() => setIsSubmitted(false)} className="btn-primary">
             Send Another Message
           </button>
         </div>
@@ -73,9 +85,10 @@ export default function ContactPage() {
         <div className="text-center space-y-4">
           <h1>Contact Us</h1>
           <p className="text-lg text-muted-foreground">
-            We'd love to hear from you. Whether you're interested in learning more about 
-            Sushruta Health, have questions about our platform, or want to discuss partnership 
-            opportunities, please don't hesitate to reach out.
+            We'd love to hear from you. Whether you're interested in learning
+            more about Sushruta Health, have questions about our platform, or
+            want to discuss partnership opportunities, please don't hesitate to
+            reach out.
           </p>
         </div>
 
@@ -114,7 +127,10 @@ export default function ContactPage() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label htmlFor="fullName" className="block text-sm font-medium text-foreground">
+              <label
+                htmlFor="fullName"
+                className="block text-sm font-medium text-foreground"
+              >
                 Full Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -130,7 +146,10 @@ export default function ContactPage() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm font-medium text-foreground">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-foreground"
+              >
                 Work Email <span className="text-red-500">*</span>
               </label>
               <input
@@ -147,7 +166,10 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="role" className="block text-sm font-medium text-foreground">
+            <label
+              htmlFor="role"
+              className="block text-sm font-medium text-foreground"
+            >
               Role <span className="text-red-500">*</span>
             </label>
             <select
@@ -168,7 +190,10 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="message" className="block text-sm font-medium text-foreground">
+            <label
+              htmlFor="message"
+              className="block text-sm font-medium text-foreground"
+            >
               Message <span className="text-red-500">*</span>
             </label>
             <textarea
@@ -200,8 +225,9 @@ export default function ContactPage() {
             </button>
 
             <p className="text-xs text-muted-foreground text-center">
-              By submitting this form, you agree to our privacy policy and terms of service. 
-              We will only use your information to respond to your inquiry.
+              By submitting this form, you agree to our privacy policy and terms
+              of service. We will only use your information to respond to your
+              inquiry.
             </p>
           </div>
         </form>
@@ -213,22 +239,29 @@ export default function ContactPage() {
             <div>
               <p className="font-medium mb-1">How do I request a demo?</p>
               <p className="text-muted-foreground">
-                Simply mention "demo request" in your message above, and we'll schedule a 
-                personalized demonstration of Sushruta Health tailored to your specific needs.
+                Simply mention "demo request" in your message above, and we'll
+                schedule a personalized demonstration of Sushruta Health
+                tailored to your specific needs.
               </p>
             </div>
             <div>
-              <p className="font-medium mb-1">Is there a free trial available?</p>
+              <p className="font-medium mb-1">
+                Is there a free trial available?
+              </p>
               <p className="text-muted-foreground">
-                Yes, we offer a 14-day free trial for qualified healthcare professionals and 
-                medical institutions. Contact us to learn more about eligibility.
+                Yes, we offer a 14-day free trial for qualified healthcare
+                professionals and medical institutions. Contact us to learn more
+                about eligibility.
               </p>
             </div>
             <div>
-              <p className="font-medium mb-1">Do you offer training and support?</p>
+              <p className="font-medium mb-1">
+                Do you offer training and support?
+              </p>
               <p className="text-muted-foreground">
-                Absolutely. We provide comprehensive onboarding, training sessions, and ongoing 
-                technical support to ensure successful implementation and adoption.
+                Absolutely. We provide comprehensive onboarding, training
+                sessions, and ongoing technical support to ensure successful
+                implementation and adoption.
               </p>
             </div>
           </div>
