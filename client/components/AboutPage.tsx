@@ -91,7 +91,7 @@ export default function AboutPage() {
                 <div className="text-center">
                   <h3 className="font-semibold text-foreground">{member.name}</h3>
                   <p className="team-title mb-3">{member.title}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed text-left">
+                  <p className="supporting-text leading-relaxed text-left">
                     {member.bio}
                   </p>
                 </div>
