@@ -128,22 +128,36 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 </div>
 
                 <div>
-                  <h4 className="font-medium mb-2">Recommended Actions:</h4>
-                  <ul className="space-y-1 text-sm list-disc list-inside">
-                    <li>Obtain vital signs and pulse oximetry</li>
-                    <li>Perform ECG and chest X-ray</li>
-                    <li>Consider D-dimer and CT-PA if PE suspected</li>
-                    <li>Assess Wells score for PE probability</li>
+                  <h4 className="font-semibold mb-3 text-foreground">Recommended Actions:</h4>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-center p-2 bg-white/30 rounded-lg">
+                      <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
+                      Obtain vital signs and pulse oximetry
+                    </li>
+                    <li className="flex items-center p-2 bg-white/30 rounded-lg">
+                      <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
+                      Perform ECG and chest X-ray
+                    </li>
+                    <li className="flex items-center p-2 bg-white/30 rounded-lg">
+                      <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
+                      Consider D-dimer and CT-PA if PE suspected
+                    </li>
+                    <li className="flex items-center p-2 bg-white/30 rounded-lg">
+                      <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
+                      Assess Wells score for PE probability
+                    </li>
                   </ul>
                 </div>
 
                 <div>
-                  <h4 className="font-medium mb-2">Clinical Rationale:</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Young female with acute chest pain and dyspnea requires immediate 
-                    evaluation for life-threatening conditions. PE risk factors should 
-                    be assessed given the acute presentation.
-                  </p>
+                  <h4 className="font-semibold mb-3 text-foreground">Clinical Rationale:</h4>
+                  <div className="p-3 bg-white/40 rounded-lg">
+                    <p className="text-sm text-foreground/80 leading-relaxed">
+                      Young female with acute chest pain and dyspnea requires immediate
+                      evaluation for life-threatening conditions. PE risk factors should
+                      be assessed given the acute presentation.
+                    </p>
+                  </div>
                 </div>
               </div>
 
