@@ -7,35 +7,35 @@
 @layer base {
   /**
    * Sushruta Health - Academic Minimalist Design System
-   * Inspired by glass.health - Clean, professional, content-focused
+   * Exact color palette and styling guidelines implementation
   */
   :root {
-    /* Core Colors */
-    --background: 210 20% 98%; /* #F9FAFB */
-    --foreground: 222.2 84% 4.9%; /* #111827 */
+    /* Core Colors - Exact specifications */
+    --background: 210 20% 98%; /* #F9FAFB - Light Grey */
+    --foreground: 222 47% 11%; /* #111827 - Near-Black */
 
     /* Container Colors */
-    --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%; /* #FFFFFF - White */
+    --card-foreground: 222 47% 11%; /* #111827 */
 
     /* Interactive Elements */
-    --primary: 213 94% 68%; /* #2563EB */
+    --primary: 213 94% 58%; /* #2563EB - Professional Blue */
     --primary-foreground: 0 0% 100%;
 
     /* Secondary Text & Borders */
-    --muted: 210 20% 98%;
-    --muted-foreground: 220 13% 42%; /* #6B7280 */
-    --border: 220 13% 91%; /* #E5E7EB */
-    --input: 220 13% 91%;
+    --muted: 210 20% 98%; /* #F9FAFB */
+    --muted-foreground: 220 13% 42%; /* #6B7280 - Medium Grey */
+    --border: 220 13% 91%; /* #E5E7EB - Light Grey */
+    --input: 220 13% 91%; /* #E5E7EB */
 
     /* Focus & Selection */
-    --ring: 213 94% 68%;
+    --ring: 213 94% 58%; /* #2563EB */
     --accent: 210 40% 96%;
-    --accent-foreground: 222.2 84% 4.9%;
+    --accent-foreground: 222 47% 11%;
 
     /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222 47% 11%;
 
     /* Destructive */
     --destructive: 0 84% 60%;
