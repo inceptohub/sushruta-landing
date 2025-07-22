@@ -100,7 +100,7 @@ export default function FeaturesPage() {
           </div>
 
           <div className="output-box">
-            <div className="text-sm text-muted-foreground mb-4 uppercase tracking-wide">
+            <div className="scenario-label mb-4">
               SCENARIO (Clinician - OPD Mode)
             </div>
 
