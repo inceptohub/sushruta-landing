@@ -23,7 +23,6 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
   const handleExampleClick = (prompt: string) => {
     setQuery(prompt);
-    setShowDemo(false);
   };
 
   const handleAsk = async () => {
@@ -46,8 +45,8 @@ export default function HomePage({ onNavigate }: HomePageProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-4xl space-y-8">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+      <div className="w-full max-w-2xl space-y-8">
         {/* Main Headline */}
         <div className="text-center">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-12">
@@ -89,13 +88,13 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyPress}
               placeholder="Enter a clinical case, chief complaint, or question..."
-              className="w-full min-h-[200px] p-8 text-lg border border-white/30 rounded-2xl bg-white/70 backdrop-blur-md resize-none focus:outline-none focus:border-primary/50 focus:bg-white/80 placeholder:text-foreground/50 transition-all duration-200 shadow-lg"
+              className="w-full min-h-[160px] p-6 text-base border border-white/30 rounded-xl bg-white/70 backdrop-blur-md resize-none focus:outline-none focus:border-primary/50 focus:bg-white/80 placeholder:text-foreground/50 transition-all duration-200 shadow-lg"
               disabled={isAnalyzing}
             />
             <button
               onClick={handleAsk}
               disabled={isAnalyzing || !query.trim()}
-              className="absolute bottom-6 right-6 btn-primary disabled:opacity-50"
+              className="absolute bottom-4 right-4 btn-primary text-sm px-4 py-2 disabled:opacity-50"
             >
               {isAnalyzing ? "Analyzing..." : "Ask Sushruta"}
             </button>
@@ -106,20 +105,40 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             <p className="text-center text-foreground/60 text-sm">
               Try these examples:
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <div className="space-y-3">
               {examplePrompts[activeMode].map((prompt, index) => (
                 <button
                   key={index}
                   onClick={() => handleExampleClick(prompt)}
-                  className="text-sm bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl px-4 py-3 text-foreground hover:bg-white/30 hover:text-primary cursor-pointer transition-all duration-200 text-left max-w-md"
+                  className="w-full text-sm bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 py-3 text-foreground hover:bg-white/30 hover:text-primary cursor-pointer transition-all duration-200 text-left"
                 >
-                  Try: {prompt}
+                  {prompt}
                 </button>
               ))}
             </div>
           </div>
         </div>
 
+        {/* Keyboard Shortcut Hint */}
+        {!showDemo && !isAnalyzing && query.trim() && (
+          <div className="text-center">
+            <p className="text-foreground/50 text-sm">
+              Press{" "}
+              <kbd className="px-2 py-1 bg-white/20 rounded text-xs font-mono">
+                ⌘
+              </kbd>{" "}
+              +{" "}
+              <kbd className="px-2 py-1 bg-white/20 rounded text-xs font-mono">
+                Enter
+              </kbd>{" "}
+              to analyze
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Fixed position results area to prevent layout shift */}
+      <div className="w-full max-w-4xl mt-8">
         {/* Analysis State */}
         {isAnalyzing && (
           <div className="bg-white/80 backdrop-blur-md border border-white/30 rounded-xl p-6 shadow-lg">
@@ -241,23 +260,6 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 </button>
               </div>
             </div>
-          </div>
-        )}
-
-        {/* Keyboard Shortcut Hint */}
-        {!showDemo && !isAnalyzing && (
-          <div className="text-center">
-            <p className="text-foreground/50 text-sm">
-              Press{" "}
-              <kbd className="px-2 py-1 bg-white/20 rounded text-xs font-mono">
-                ⌘
-              </kbd>{" "}
-              +{" "}
-              <kbd className="px-2 py-1 bg-white/20 rounded text-xs font-mono">
-                Enter
-              </kbd>{" "}
-              to analyze
-            </p>
           </div>
         )}
       </div>
