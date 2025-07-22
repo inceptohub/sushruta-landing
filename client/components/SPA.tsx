@@ -47,7 +47,7 @@ export default function SPA() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <SPANavigation currentSection={currentSection} onNavigate={handleNavigate} />
       <main className="transition-all duration-300 ease-in-out">
         {renderCurrentSection()}
