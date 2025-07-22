@@ -44,9 +44,9 @@ export default function FeaturesPage() {
                       <span className="font-medium">1. Acute Pancreatitis</span>
                       <span className="text-sm bg-red-100 text-red-800 px-2 py-1 rounded">High Probability</span>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      <strong>Rationale:</strong> Classic presentation of severe epigastric pain radiating to back, 
-                      triggered by large meal, associated with nausea/vomiting. Age and symptom pattern strongly 
+                    <p className="rationale-text">
+                      <strong>Rationale:</strong> Classic presentation of severe epigastric pain radiating to back,
+                      triggered by large meal, associated with nausea/vomiting. Age and symptom pattern strongly
                       suggest pancreatic etiology.
                     </p>
                   </div>
