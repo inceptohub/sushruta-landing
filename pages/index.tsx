@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { scenarios } from "../lib/scenarios";
 
 export default function HomePage() {
   const [query, setQuery] = useState("");
   const [activeMode, setActiveMode] = useState<"student" | "opd">("student");
+  const [demoResponseContent, setDemoResponseContent] = useState<React.ReactNode | null>(null);
   const router = useRouter();
 
   // Add global keyboard shortcut for Cmd/Ctrl+Enter
@@ -22,14 +25,12 @@ export default function HomePage() {
   }, [query]);
 
   const examplePrompts = {
-    student: [
-      "25-year-old female with acute chest pain and shortness of breath",
-      "Generate differential diagnosis for abdominal pain",
-    ],
-    opd: [
-      "67-year-old male with fever, cough, and confusion",
-      "What questions should I ask a patient with headache?",
-    ],
+    student: scenarios.homePageScenarios
+      .filter((s) => s.mode === "Student Mode")
+      .map((s) => s.prompt),
+    opd: scenarios.homePageScenarios
+      .filter((s) => s.mode === "OPD Mode")
+      .map((s) => s.prompt),
   };
 
   const handleExampleClick = (prompt: string) => {
@@ -92,7 +93,12 @@ export default function HomePage() {
           <div className="relative">
             <textarea
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                if (demoResponseContent) {
+                  setDemoResponseContent(null);
+                }
+              }}
               onKeyDown={(e) => {
                 if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
                   e.preventDefault();
@@ -106,14 +112,27 @@ export default function HomePage() {
                 if (el) el.focus();
               }}
             />
-            <button
-              onClick={handleAsk}
-              disabled={!query.trim()}
-              className="absolute bottom-4 right-4 btn-primary text-sm px-4 py-2 disabled:opacity-50"
-            >
-              Ask Sushruta
-            </button>
+            <Link href={`/ChatPage?q=${encodeURIComponent(query.trim())}`} passHref>
+              <button
+                onClick={handleAsk}
+                disabled={!query.trim()}
+                className="absolute bottom-4 right-4 btn-primary text-sm px-4 py-2 disabled:opacity-50"
+              >
+                Ask Sushruta
+              </button>
+            </Link>
           </div>
+
+          {/* Demo Response Area */}
+          {demoResponseContent && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="w-full bg-white p-6 rounded-2xl shadow-lg border border-gray-200"
+            >
+              {demoResponseContent}
+            </motion.div>
+          )}
 
           {/* Dynamic Example Prompts */}
           <div className="space-y-4">
@@ -122,21 +141,21 @@ export default function HomePage() {
             </p>
             <div className="space-y-3">
               {examplePrompts[activeMode].map((prompt, index) => (
-  <button
-    key={index}
-    onClick={() => handleExampleClick(prompt)}
-    className="example-prompt"
-  >
-    <span className="example-prompt__icon" aria-hidden="true">
-      {/* Sparkle SVG icon - minimalist line style, currentColor */}
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 2v2M9 14v2M16 9h-2M4 9H2M13.657 4.343l-1.414 1.414M5.757 12.243l-1.414 1.414M13.657 13.657l-1.414-1.414M5.757 5.757L4.343 4.343" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
-        <circle cx="9" cy="9" r="2.2" stroke="currentColor" strokeWidth="1.3"/>
-      </svg>
-    </span>
-    {prompt}
-  </button>
-))}
+                <button
+                  key={index}
+                  onClick={() => handleExampleClick(prompt)}
+                  className="example-prompt"
+                >
+                  <span className="example-prompt__icon" aria-hidden="true">
+                    {/* Sparkle SVG icon - minimalist line style, currentColor */}
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 2v2M9 14v2M16 9h-2M4 9H2M13.657 4.343l-1.414 1.414M5.757 12.243l-1.414 1.414M13.657 13.657l-1.414-1.414M5.757 5.757L4.343 4.343" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                      <circle cx="9" cy="9" r="2.2" stroke="currentColor" strokeWidth="1.3"/>
+                    </svg>
+                  </span>
+                  {prompt}
+                </button>
+              ))}
             </div>
           </div>
         </div>

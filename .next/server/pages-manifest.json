@@ -4,6 +4,6 @@
   "/_document": "pages/_document.js",
   "/features": "pages/features.js",
   "/": "pages/index.js",
-  "/contact": "pages/contact.js",
+  "/ChatPage": "pages/ChatPage.js",
   "/about": "pages/about.js"
 }
