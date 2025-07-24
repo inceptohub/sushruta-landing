@@ -19,10 +19,9 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         }
       }
     };
-    document.addEventListener('keydown', handler);
-    return () => document.removeEventListener('keydown', handler);
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
   }, [query]);
-
 
   const examplePrompts = {
     student: [
@@ -41,7 +40,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
   const handleAsk = async () => {
     if (!query.trim()) return;
-    
+
     // Navigate to chat page in the same tab with the query as a URL parameter
     const chatUrl = `/chat?q=${encodeURIComponent(query.trim())}`;
     window.location.assign(chatUrl);
@@ -54,42 +53,38 @@ export default function HomePage({ onNavigate }: HomePageProps) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12">
-      <div className="w-full max-w-2xl space-y-8">
-        {/* Main Headline */}
-        <div className="text-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-12">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-[#F9FAFB]">
+      <div className="w-full max-w-xl space-y-12">
+        {/* Brand Block */}
+        <div className="text-center space-y-3">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-satoshi font-bold mb-2">
             Sushruta Health
           </h1>
+          <h2 className="text-xl md:text-2xl font-normal text-[#111827] font-inter">
+            Your intelligent co-pilot for clinical decision-making.
+          </h2>
         </div>
 
         {/* Mode Selector */}
-        <div className="flex justify-center mb-8 px-4">
-          <div className="relative bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl p-2 w-full max-w-md">
-            <div className="relative flex">
+        <div className="flex justify-center">
+          <div className="relative w-full max-w-md rounded-2xl bg-[#E5E7EB] p-2 flex items-center">
+            <div className="relative flex w-full">
               {["student", "opd"].map((mode) => (
                 <button
                   key={mode}
                   onClick={() => setActiveMode(mode as "student" | "opd")}
-                  className={`relative px-6 py-3 rounded-xl text-sm font-medium transition-colors duration-200 z-10 flex-1 text-center ${
+                  className={`relative px-6 py-3 rounded-xl text-sm font-semibold transition-colors duration-200 z-10 flex-1 text-center ${
                     activeMode === mode
-                      ? "text-foreground"
-                      : "text-foreground/70 hover:text-foreground"
+                      ? "text-white"
+                      : "text-[#111827] hover:text-[#2563EB]"
                   }`}
                 >
                   {mode === "student" ? "Student Mode" : "OPD Mode"}
                 </button>
               ))}
               <motion.div
-                layoutId="active-mode-background"
-                className="absolute bg-white rounded-xl shadow-sm z-0"
-                style={{
-                  top: '4px',
-                  bottom: '4px',
-                  left: activeMode === "student" ? "4px" : "calc(50% + 4px)",
-                  right: activeMode === 'student' ? 'calc(50% + 4px)' : '4px',
-                  width: activeMode === "student" ? "calc(50% - 8px)" : "calc(50% - 8px)",
-                }}
+                className="absolute top-1 left-1 bottom-1 w-1/2 rounded-xl shadow-sm z-0 bg-[#2563EB]"
+                animate={{ x: activeMode === "student" ? 0 : "100%" }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
               />
             </div>
@@ -110,8 +105,10 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 handleKeyPress(e);
               }}
               placeholder="Enter a clinical case, chief complaint, or question..."
-              className="w-full min-h-[160px] max-h-[160px] p-6 text-base border border-white/30 rounded-xl bg-white/70 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:bg-white/80 placeholder:text-foreground/50 transition-all duration-200 shadow-lg"
-              
+              className="modern-query-box"
+              ref={(el) => {
+                if (el) el.focus();
+              }}
             />
             <button
               onClick={handleAsk}
@@ -129,21 +126,30 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             </p>
             <div className="space-y-3">
               {examplePrompts[activeMode].map((prompt, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleExampleClick(prompt)}
-                  className="w-full text-sm bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 py-3 text-foreground hover:bg-white/30 hover:text-primary cursor-pointer transition-all duration-200 text-left"
-                >
-                  {prompt}
-                </button>
-              ))}
+  <button
+    key={index}
+    onClick={() => handleExampleClick(prompt)}
+    className="example-prompt"
+  >
+    <span className="example-prompt__icon" aria-hidden="true">
+      {/* Sparkle SVG icon - minimalist line style, currentColor */}
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 2v2M9 14v2M16 9h-2M4 9H2M13.657 4.343l-1.414 1.414M5.757 12.243l-1.414 1.414M13.657 13.657l-1.414-1.414M5.757 5.757L4.343 4.343" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+        <circle cx="9" cy="9" r="2.2" stroke="currentColor" strokeWidth="1.3"/>
+      </svg>
+    </span>
+    {prompt}
+  </button>
+))}
             </div>
           </div>
         </div>
 
         {/* Keyboard Shortcut Hint (always visible to prevent layout shift) */}
         <div className="text-center min-h-[28px]">
-          <p className={`text-foreground/50 text-sm transition-opacity duration-200 ${query.trim() ? 'opacity-100' : 'opacity-40'}`}>
+          <p
+            className={`text-foreground/50 text-sm transition-opacity duration-200 ${query.trim() ? "opacity-100" : "opacity-40"}`}
+          >
             Press{" "}
             <kbd className="px-2 py-1 bg-white/20 rounded text-xs font-mono">
               ⌘
@@ -156,8 +162,6 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           </p>
         </div>
       </div>
-
-
     </div>
   );
 }

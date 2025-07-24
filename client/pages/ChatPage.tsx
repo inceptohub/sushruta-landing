@@ -89,16 +89,21 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 via-emerald-50 to-cyan-50">
+    <div className="min-h-screen bg-[#F9FAFB] flex flex-col">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-white/30 py-4 px-6 shadow-sm">
+      <header className="bg-white/80 backdrop-blur-md border-b border-[#E5E7EB] py-4 px-6 shadow-sm">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold text-foreground">
             Sushruta AI Chat
           </h1>
           <button
-            onClick={() => window.close()}
+            onClick={() => {
+              window.location.replace('#home');
+              setTimeout(() => window.dispatchEvent(new HashChangeEvent('hashchange')), 0);
+            }}
             className="text-sm text-foreground/70 hover:text-foreground bg-white/50 hover:bg-white/70 px-4 py-2 rounded-lg border border-white/30 transition-all duration-200"
+            type="button"
+            aria-label="Close Chat"
           >
             Close Chat
           </button>
@@ -120,23 +125,31 @@ export default function ChatPage() {
               </div>
             </div>
           ) : (
-            messages.map((message, index) => (
+            messages.map((message, idx) => (
               <div
-                key={index}
-                className={`flex ${
-                  message.role === "user" ? "justify-end" : "justify-start"
-                }`}
+                key={idx}
+                className={`flex items-end ${message.role === "user" ? "justify-end" : "justify-start"}`}
               >
+                {message.role === "assistant" && (
+                  <img
+                    src="/logo-sushruta.svg"
+                    alt="Sushruta Health"
+                    className="w-8 h-8 rounded-full bg-[#E5E7EB] border border-[#E5E7EB] mr-3"
+                    aria-hidden="false"
+                  />
+                )}
                 <div
-                  className={`max-w-3xl rounded-2xl shadow-lg ${
+                  className={`relative max-w-xl rounded-2xl shadow-md ${
                     message.role === "user"
-                      ? "btn-primary text-white ml-12 px-6 py-4"
-                      : "bg-white/80 backdrop-blur-md border border-white/30 text-foreground mr-12"
+                      ? "bg-[#2563EB] text-white font-inter px-6 py-4 ml-2 md:ml-8"
+                      : "bg-[#E5E7EB] text-[#111827] font-inter px-6 py-5 mr-2 md:mr-8"
                   }`}
+                  style={{
+                    borderTopRightRadius: message.role === "user" ? '0.75rem' : '2rem',
+                    borderTopLeftRadius: message.role === "assistant" ? '0.75rem' : '2rem',
+                  }}
                 >
-                  {message.role === "user" ? (
-                    <div className="whitespace-pre-wrap">{message.content}</div>
-                  ) : message.content === "MEDICAL_ANALYSIS" ? (
+                  {message.content === "MEDICAL_ANALYSIS" ? (
                     <div className="p-8 space-y-6">
                       <div className="flex items-center justify-between">
                         <h3 className="text-xl font-semibold text-foreground">
@@ -266,7 +279,7 @@ export default function ChatPage() {
       </div>
 
       {/* Fixed Input Area */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md border-t border-white/30 p-4">
+      <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md border-t border-[#E5E7EB] p-4">
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
           <div className="flex space-x-3">
             <input
@@ -282,13 +295,16 @@ export default function ChatPage() {
                 }
               }}
               placeholder="Type your medical question..."
-              className="flex-1 border border-white/30 rounded-xl px-4 py-3 bg-white/70 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:bg-white/80 placeholder:text-foreground/50 transition-all duration-200 shadow-sm"
+              className="form-input flex-1 border border-[#E5E7EB] rounded-xl px-4 py-3 bg-white/80 focus:outline-none focus:border-[#2563EB] focus:bg-white placeholder:text-foreground/50 transition-all duration-200 shadow-sm"
+              aria-label="Type your medical question"
               disabled={isLoading}
+              autoFocus
             />
             <button
               type="submit"
               disabled={!input.trim() || isLoading}
               className="btn-primary px-6 py-3 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+              aria-label="Send medical question"
             >
               {isLoading ? "..." : "Send"}
             </button>

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satoshi:wght@700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -11,21 +12,21 @@
   */
   :root {
     /* Core Colors */
-    --background: 0 0% 100%; /* White base */
-    --foreground: 204 24% 16%; /* #1e293b - Dark blue-gray */
+    --background: 220 20% 98%; /* #F9FAFB Off-White */
+    --foreground: 222 47% 11%; /* #111827 Near-Black */
 
     /* Container Colors */
-    --card: 0 0% 100% / 0.9; /* Semi-transparent white */
-    --card-foreground: 204 24% 16%;
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 222 47% 11%;
 
     /* Interactive Elements */
-    --primary: 194 100% 28%; /* #007ba7 - Professional teal */
+    --primary: 221 83% 53%; /* #2563EB Professional Blue */
     --primary-foreground: 0 0% 100%;
 
     /* Secondary Text & Borders */
-    --muted: 0 0% 100% / 0.5;
-    --muted-foreground: 206 12% 46%; /* #6b7280 */
-    --border: 0 0% 100% / 0.3;
+    --muted: 220 7% 85%; /* #E5E7EB */
+    --muted-foreground: 222 9% 46%; /* #6B7280 */
+    --border: 220 7% 85%; /* #E5E7EB */
     --input: 0 0% 100% / 0.7;
 
     /* Focus & Selection */
@@ -60,32 +61,30 @@
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
-    background: linear-gradient(135deg, 
-      #e0f2fe 0%,     /* Light blue scrubs */
-      #b3e5fc 25%,    /* Soft blue */
-      #81c784 50%,    /* Medical green */
-      #a5d6a7 75%,    /* Light green scrubs */
-      #e8f5e8 100%    /* Very light green */
-    );
+    background: #f9fafb;
     min-height: 100vh;
     position: relative;
   }
 
   /* Typography Hierarchy - Modern, Clean Style */
   h1 {
+    font-family: "Satoshi", sans-serif;
     @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-tight;
   }
 
   h2 {
+    font-family: "Inter", sans-serif;
     @apply text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-foreground;
   }
 
   h3 {
+    font-family: "Inter", sans-serif;
     @apply text-xl font-semibold tracking-tight text-foreground;
   }
 
   /* Body Text - Clean, readable */
   p {
+    font-family: "Inter", sans-serif;
     @apply text-base md:text-lg font-normal leading-relaxed text-foreground/80;
   }
 
@@ -101,6 +100,34 @@
 }
 
 @layer components {
+  /* Modern HomePage Query Box */
+  .modern-query-box {
+    width: 100%;
+    min-height: 200px;
+    max-height: 300px;
+    padding: 1.5rem;
+    font-size: 1rem;
+    background: #fff;
+    border: 2px solid #e5e7eb;
+    border-radius: 1rem;
+    box-shadow: none;
+    resize: none;
+    font-family: "Inter", sans-serif;
+    color: #111827;
+    transition:
+      box-shadow 0.2s,
+      border-color 0.2s;
+  }
+  .modern-query-box:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #2563eb33;
+    border: 2px solid #2563eb;
+  }
+  .modern-query-box::placeholder {
+    color: #6b7280;
+    opacity: 1;
+  }
+
   /* Primary Action Buttons - Exact specifications */
   .btn-primary {
     display: flex;
@@ -108,29 +135,27 @@
     justify-content: center;
     flex-direction: column;
     flex-wrap: nowrap;
-    background-color: rgb(7, 61, 66);
-    background-image: linear-gradient(
-      rgba(0, 0, 0, 0) 90%,
-      rgba(5, 50, 55, 0.52)
-    );
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 5px 0px;
-    color: rgb(255, 255, 255);
+    background-color: #2563eb;
+    border-radius: 8px;
+    color: #fff;
     cursor: pointer;
-    font-family: Graphik, sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 16px;
-    font-weight: 500;
-    line-height: 19.2px;
-    padding: 16px 24px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 14px 24px;
     text-decoration: none;
-    transition: all 0.24s ease;
+    transition:
+      background 0.2s,
+      box-shadow 0.2s;
     border: none;
+    box-shadow: 0 2px 8px 0 rgba(37, 99, 235, 0.08);
     opacity: 1;
   }
 
   .btn-primary:hover {
-    background-color: rgb(5, 50, 55);
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 8px 0px;
+    background-color: #1749b2;
+    box-shadow: 0 4px 12px 0 rgba(37, 99, 235, 0.12);
   }
 
   .btn-primary:disabled {
@@ -140,7 +165,8 @@
 
   /* Secondary Action Buttons - Subtle glass-like style */
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-medium bg-white/20 backdrop-blur-sm border border-white/30 text-foreground hover:bg-white/30 transition-all duration-200;
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold bg-[#E5E7EB] text-[#111827] border border-[#E5E7EB] hover:bg-[#F3F4F6] transition-all duration-200;
+    font-family: "Inter", sans-serif;
   }
 
   /* Query Box Styles - Glass morphism effect */
@@ -196,12 +222,101 @@
 
   /* Example Prompts - Interactive glass buttons */
   .example-prompt {
-    @apply text-sm bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg p-3 text-foreground hover:bg-white/30 hover:text-primary cursor-pointer transition-all duration-200;
-  }
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+  padding: 0.75rem 1.25rem;
+  border: 1.5px solid transparent;
+  border-radius: 9999px;
+  background: transparent;
+  color: #6b7280;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
+  box-shadow: none;
+}
+.example-prompt__icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.1em;
+  color: #6b7280;
+  transition: color 0.18s;
+}
+.example-prompt:hover, .example-prompt:focus {
+  background: #f9fafb;
+  border: 1.5px solid #e5e7eb;
+  color: #111827;
+}
+.example-prompt:hover .example-prompt__icon, .example-prompt:focus .example-prompt__icon {
+  color: #111827;
+}
+
+.example-prompt-case {
+  color: #374151;
+}
+.example-prompt-action {
+  color: #2563eb;
+}
+.example-prompt:hover {
+  border-color: #2563eb !important;
+  color: #2563eb;
+  background: #f9fafb;
+}
+
 
   /* Scenario Labels - Clean, modern style */
   .scenario-label {
-    @apply text-xs text-foreground/60 uppercase tracking-wider font-semibold bg-white/30 backdrop-blur-sm px-3 py-1 rounded-full inline-block;
+    display: inline-block;
+    background: #e5e7eb;
+    color: #374151;
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  /* Probability Tags */
+  .probability-tag {
+    display: inline-block;
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    padding: 0.18rem 0.9rem;
+    margin-left: 0.5rem;
+    margin-bottom: 0.1rem;
+    vertical-align: middle;
+  }
+  .probability-high {
+    background: #d1fae5;
+    color: #047857;
+  }
+  .probability-moderate {
+    background: #fef9c3;
+    color: #b45309;
+  }
+  .probability-low {
+    background: #f3f4f6;
+    color: #6b7280;
+  }
+
+  /* Section Labels (e.g., Chief Complaint, Output) */
+  .section-label {
+    font-family: "Inter", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.25rem;
   }
 
   /* Rationale Text - Enhanced readability */
