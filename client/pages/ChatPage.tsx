@@ -20,15 +20,17 @@ export default function ChatPage() {
         // Only send if input is non-empty and not loading
         if (input.trim() && !isLoading) {
           // Create a synthetic event for handleSubmit
-          const form = document.querySelector('form');
+          const form = document.querySelector("form");
           if (form) {
-            form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+            form.dispatchEvent(
+              new Event("submit", { cancelable: true, bubbles: true }),
+            );
           }
         }
       }
     };
-    document.addEventListener('keydown', handler);
-    return () => document.removeEventListener('keydown', handler);
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
   }, [input, isLoading]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);

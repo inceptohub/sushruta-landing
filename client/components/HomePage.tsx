@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface HomePageProps {
@@ -8,6 +8,21 @@ interface HomePageProps {
 export default function HomePage({ onNavigate }: HomePageProps) {
   const [query, setQuery] = useState("");
   const [activeMode, setActiveMode] = useState<"student" | "opd">("student");
+
+  // Add global keyboard shortcut for Cmd/Ctrl+Enter
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+        e.preventDefault();
+        if (query.trim()) {
+          handleAsk();
+        }
+      }
+    };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [query]);
+
 
   const examplePrompts = {
     student: [
@@ -27,9 +42,9 @@ export default function HomePage({ onNavigate }: HomePageProps) {
   const handleAsk = async () => {
     if (!query.trim()) return;
     
-    // Open chat page in new tab with the query as a URL parameter
+    // Navigate to chat page in the same tab with the query as a URL parameter
     const chatUrl = `/chat?q=${encodeURIComponent(query.trim())}`;
-    window.open(chatUrl, '_blank');
+    window.location.assign(chatUrl);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
