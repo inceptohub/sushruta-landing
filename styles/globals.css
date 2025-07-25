@@ -328,4 +328,17 @@
   .team-title {
     @apply text-sm text-primary font-semibold;
   }
+
+  .team-card-minimal {
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .team-card-minimal:hover {
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: 0 4px 12px 0 hsl(var(--primary) / 0.08);
+  }
 }
