@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { DemoResponse } from '@shared/api';
+import { DemoResponse } from '@/shared/api';
 
 export default function handler(
   req: NextApiRequest,

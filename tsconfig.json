@@ -37,6 +37,9 @@
       ],
       "@/shared/*": [
         "shared/*"
+      ],
+      "@/hooks/*": [
+        "hooks/*"
       ]
     },
     "target": "ES2017"
