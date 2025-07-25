@@ -11,28 +11,28 @@ export const metadata: Metadata = {
 
 const teamMembers = [
   {
-    name: 'Dr. Arjun Verma',
-    credentials: 'MD (Internal Medicine), FACP',
-    role: 'Chief Medical Officer',
-    image: '/images/team/arjun-verma.jpg',
+    name: 'Praveen Kumar Saini',
+    credentials: 'Cofounder & CTO',
+    role: 'Owns product roadmap and AI development',
+    image: '/images/team/praveen-kumar-saini.jpg',
   },
   {
-    name: 'Dr. Priya Sharma',
-    credentials: 'PhD, AI & Health Informatics, IIT Bombay',
-    role: 'Head of AI Research',
-    image: '/images/team/priya-sharma.jpg',
+    name: 'Dr. Arpit',
+    credentials: 'Clinical Lead & Cofounder',
+    role: 'Defines clinical workflows and use cases',
+    image: '/images/team/dr-arpit.jpg',
   },
   {
-    name: 'Dr. Rahul Desai',
-    credentials: 'MD, DNB (Emergency Medicine)',
-    role: 'Clinical Advisor, Public Health',
-    image: '/images/team/rahul-desai.jpg',
+    name: 'Amit Gupta',
+    credentials: 'Cofounder & Tech Lead',
+    role: 'Builds and scales backend architecture',
+    image: '/images/team/amit-gupta.jpg',
   },
   {
-    name: 'Sunita Patel',
-    credentials: 'MBA, IIM Ahmedabad',
-    role: 'Head of Product',
-    image: '/images/team/sunita-patel.jpg',
+    name: 'Dr. Ankit',
+    credentials: 'Founding Clinical Research',
+    role: 'Provides and structures clinical content',
+    image: '/images/team/dr-ankit.jpg',
   },
 ];
 
