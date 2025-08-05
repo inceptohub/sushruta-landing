@@ -112,15 +112,13 @@ export default function HomePage() {
                 if (el) el.focus();
               }}
             />
-            <Link href={`/ChatPage?q=${encodeURIComponent(query.trim())}`} passHref>
-              <button
-                onClick={handleAsk}
-                disabled={!query.trim()}
-                className="absolute bottom-4 right-4 btn-primary text-sm px-4 py-2 disabled:opacity-50"
-              >
-                Ask Sushruta
-              </button>
-            </Link>
+            <button
+              onClick={handleAsk}
+              disabled={!query.trim()}
+              className="absolute bottom-4 right-4 btn-primary text-sm px-4 py-2 disabled:opacity-50"
+            >
+              Ask Sushruta
+            </button>
           </div>
 
           {/* Demo Response Area */}
