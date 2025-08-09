@@ -124,6 +124,14 @@ export default function AudienceSection() {
               <div className="space-y-4 mb-8">
                 <div className="flex items-start space-x-3">
                   <div className="w-6 h-6 bg-sushruta-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Stethoscope className="w-3 h-3 text-sushruta-purple-600" />
+                  </div>
+                  <span className="text-gray-700">
+                    Practice history taking with guided prompts
+                  </span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-6 h-6 bg-sushruta-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     <BookOpen className="w-3 h-3 text-sushruta-purple-600" />
                   </div>
                   <span className="text-gray-700">

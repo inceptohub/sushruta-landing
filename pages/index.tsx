@@ -28,7 +28,7 @@ export default function HomePage() {
     student: {
       label: "Clinical Evaluation",
       description:
-        "Practice clinical reasoning with structured guidance: build differentials, assess red flags, and learn next steps.",
+        "Practice history taking and clinical reasoning with structured guidance: build differentials, assess red flags, and learn next steps.",
     },
     opd: {
       label: "Case Discussion",
