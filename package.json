@@ -6,12 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sanitize:results": "tsx scripts/sanitize-results.ts"
   },
   "dependencies": {
     "@types/chart.js": "^4.0.1",
     "@types/uuid": "^10.0.0",
     "chart.js": "^4.5.0",
+    "dompurify": "^3.1.6",
+    "marked": "^9.1.6",
     "next": "^15.4.3",
     "react-chartjs-2": "^5.3.0",
     "serverless-http": "^3.2.0",
