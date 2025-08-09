@@ -24,12 +24,25 @@ export default function HomePage() {
     return () => document.removeEventListener("keydown", handler);
   }, [query]);
 
+  const modeMeta: Record<"student" | "opd", { label: string; description: string }> = {
+    student: {
+      label: "Clinical Evaluation",
+      description:
+        "Practice clinical reasoning with structured guidance: build differentials, assess red flags, and learn next steps.",
+    },
+    opd: {
+      label: "Case Discussion",
+      description:
+        "Discuss real-world cases efficiently: ask focused questions, triage, and draft concise management plans.",
+    },
+  };
+
   const examplePrompts = {
     student: scenarios.homePageScenarios
-      .filter((s) => s.mode === "Student Mode")
+      .filter((s) => s.mode === "Clinical Evaluation")
       .map((s) => s.prompt),
     opd: scenarios.homePageScenarios
-      .filter((s) => s.mode === "OPD Mode")
+      .filter((s) => s.mode === "Case Discussion")
       .map((s) => s.prompt),
   };
 
@@ -76,7 +89,7 @@ export default function HomePage() {
                       : "text-[#111827] hover:text-[#2563EB]"
                   }`}
                 >
-                  {mode === "student" ? "Student Mode" : "OPD Mode"}
+                  {modeMeta[mode as "student" | "opd"].label}
                 </button>
               ))}
               <motion.div
@@ -86,6 +99,11 @@ export default function HomePage() {
               />
             </div>
           </div>
+        </div>
+
+        {/* Mode Description */}
+        <div className="text-center text-sm text-[#374151] -mt-2 mb-2">
+          {modeMeta[activeMode].description}
         </div>
 
         {/* Interactive Query Box */}

@@ -1,7 +1,7 @@
 export const scenarios = {
   "homePageScenarios": [
     {
-      "mode": "Student Mode",
+      "mode": "Clinical Evaluation",
       "prompt": "45-year-old male with sudden-onset severe epigastric pain radiating to the back",
       "response": {
         "title": "Top Differential Diagnoses",
@@ -14,7 +14,7 @@ export const scenarios = {
       }
     },
     {
-      "mode": "Student Mode",
+      "mode": "Clinical Evaluation",
       "prompt": "A young adult with fever and sore throat",
       "response": {
         "title": "Top Differential Diagnoses",
@@ -27,7 +27,7 @@ export const scenarios = {
       }
     },
     {
-      "mode": "OPD Mode",
+      "mode": "Case Discussion",
       "prompt": "65-year-old male with persistent cough and fever for 7 days",
       "response": {
         "title": "Top Differential Diagnoses",
@@ -39,7 +39,7 @@ export const scenarios = {
       }
     },
     {
-      "mode": "OPD Mode",
+      "mode": "Case Discussion",
       "prompt": "Draft a management plan for newly diagnosed Type 2 Diabetes",
       "response": {
         "title": "Draft Management Plan Outline",
@@ -54,7 +54,7 @@ export const scenarios = {
   "featuresPageScenarios": [
     {
       "feature": "Differential Diagnosis",
-      "mode": "Student Mode",
+      "mode": "Clinical Evaluation",
       "scenario": "A medical student is presented with a classic case of chest pain and needs to build a broad differential, considering both common and life-threatening causes.",
       "userInput": "35-year-old software engineer presents with a 2-hour history of central, crushing chest pain. He is diaphoretic and anxious. No significant past medical history.",
       "sushrutaOutput": {
@@ -86,7 +86,7 @@ export const scenarios = {
     },
     {
       "feature": "Ask a Question",
-      "mode": "OPD Mode",
+      "mode": "Case Discussion",
       "scenario": "A primary care physician is evaluating a patient with chronic headache, a common but challenging complaint.",
       "userInput": "Patient is a 42-year-old woman complaining of headaches for the past 3 months. She describes them as a 'dull ache' all over her head, occurring 3-4 times a week.",
       "sushrutaOutput": {
@@ -112,7 +112,7 @@ export const scenarios = {
     },
     {
       "feature": "Draft Management Plan (DMP)",
-      "mode": "OPD Mode",
+      "mode": "Case Discussion",
       "scenario": "A doctor needs to create an initial management plan for a patient newly diagnosed with Dengue Fever during a seasonal outbreak.",
       "userInput": "Patient is a 28-year-old male with a 4-day history of high-grade fever, retro-orbital pain, and myalgia. CBC shows leukopenia and thrombocytopenia (platelets 80,000). NS1 antigen test is positive.",
       "sushrutaOutput": {
@@ -139,7 +139,7 @@ export const scenarios = {
     },
     {
       "feature": "Draft H&P (History & Physical)",
-      "mode": "OPD Mode",
+      "mode": "Case Discussion",
       "scenario": "A resident doctor needs to quickly generate a structured note after an in-person consultation for a patient with a common skin infection.",
       "userInput": "Patient is a 22-year-old college student with a painful, red, swollen area on his right shin for 3 days. Denies trauma. On examination, there is a 5x7 cm erythematous, tender, non-fluctuant plaque with ill-defined borders on the anterior aspect of the right lower leg.",
       "sushrutaOutput": {

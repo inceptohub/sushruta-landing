@@ -33,7 +33,7 @@ export default function AudienceSection() {
                 </div>
                 <div>
                   <span className="text-sm font-semibold text-sushruta-blue-600 uppercase tracking-wide">
-                    OPD Mode
+                    Case Discussion
                   </span>
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
                     For Clinicians
@@ -84,7 +84,7 @@ export default function AudienceSection() {
 
               {/* CTA */}
               <button className="inline-flex items-center text-sushruta-blue-600 font-semibold hover:text-sushruta-blue-700 transition-colors duration-200 group">
-                Learn more about OPD Mode
+                Learn more about Case Discussion
                 <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" />
               </button>
             </div>
@@ -100,7 +100,7 @@ export default function AudienceSection() {
                 </div>
                 <div>
                   <span className="text-sm font-semibold text-sushruta-purple-600 uppercase tracking-wide">
-                    Student Mode
+                    Clinical Evaluation
                   </span>
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
                     For Students
@@ -151,7 +151,7 @@ export default function AudienceSection() {
 
               {/* CTA */}
               <button className="inline-flex items-center text-sushruta-purple-600 font-semibold hover:text-sushruta-purple-700 transition-colors duration-200 group">
-                Learn more about Student Mode
+                Learn more about Clinical Evaluation
                 <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" />
               </button>
             </div>

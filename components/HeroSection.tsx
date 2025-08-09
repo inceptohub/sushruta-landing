@@ -64,11 +64,11 @@ export default function HeroSection() {
                 <div className="flex space-x-4 mb-8">
                   <button className="flex items-center space-x-2 px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-white hover:bg-white/30 transition-all duration-200">
                     <Stethoscope className="w-4 h-4" />
-                    <span>OPD Mode</span>
+                    <span>Case Discussion</span>
                   </button>
                   <button className="flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-blue-200 hover:bg-white/20 transition-all duration-200">
                     <BookOpen className="w-4 h-4" />
-                    <span>Student Mode</span>
+                    <span>Clinical Evaluation</span>
                   </button>
                 </div>
 
@@ -78,7 +78,7 @@ export default function HeroSection() {
                     <div className="w-8 h-8 bg-blue-400/30 rounded-lg flex items-center justify-center mb-2 group-hover:bg-blue-400/40 transition-colors">
                       <Stethoscope className="w-5 h-5" />
                     </div>
-                    <span className="text-sm font-medium">Start OPD</span>
+                    <span className="text-sm font-medium">Start Case Discussion</span>
                   </button>
 
                   <button className="flex flex-col items-center justify-center p-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white hover:bg-white/20 transition-all duration-200 group">
@@ -114,7 +114,7 @@ export default function HeroSection() {
                   <div className="flex items-center space-x-3 p-3 bg-white/5 border border-white/10 rounded-lg">
                     <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
                     <span className="text-blue-100 text-sm">
-                      Start OPD Session
+                      Start Case Discussion
                     </span>
                   </div>
                   <div className="flex items-center space-x-3 p-3 bg-white/5 border border-white/10 rounded-lg">
