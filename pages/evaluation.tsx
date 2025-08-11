@@ -137,6 +137,15 @@ export default function EvaluationPage({
     questions.map((q) => ({ id: q.id, choice: null, feedback: "" })),
   );
 
+  // Persist session id locally to associate interactions
+  const [sessionId, setSessionId] = useLocalState<string | null>(
+    "doc_eval_session_id",
+    null,
+  );
+  const [emailError, setEmailError] = useState<string>("");
+
+  const questionStartRef = useRef<number | null>(null);
+
   // re-seed responses if question set changes in length
   useEffect(() => {
     if (responses.length !== questions.length) {
@@ -177,10 +186,22 @@ export default function EvaluationPage({
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.target && (e.target as HTMLElement).tagName === "TEXTAREA") return;
-      if (e.key.toLowerCase() === "a") setChoice("A");
-      if (e.key.toLowerCase() === "b") setChoice("B");
-      if (e.key.toLowerCase() === "t") setChoice("tie");
-      if (e.key.toLowerCase() === "n") setChoice("neither");
+      if (e.key.toLowerCase() === "a") {
+        setChoice("A");
+        recordInteraction(idx, "A", responses[idx]?.feedback ?? "");
+      }
+      if (e.key.toLowerCase() === "b") {
+        setChoice("B");
+        recordInteraction(idx, "B", responses[idx]?.feedback ?? "");
+      }
+      if (e.key.toLowerCase() === "t") {
+        setChoice("tie");
+        recordInteraction(idx, "tie", responses[idx]?.feedback ?? "");
+      }
+      if (e.key.toLowerCase() === "n") {
+        setChoice("neither");
+        recordInteraction(idx, "neither", responses[idx]?.feedback ?? "");
+      }
       if (e.key === "ArrowLeft") go(-1);
       if (e.key === "ArrowRight") go(1);
       if ((e.metaKey || e.ctrlKey) && e.key === "Enter") handleSubmit();
@@ -190,114 +211,147 @@ export default function EvaluationPage({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idx, responses]);
 
-  // Removed auto-load to prevent client-side data swaps during hydration
+  // Track time spent per question
+  useEffect(() => {
+    questionStartRef.current = Date.now();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idx]);
 
-  const loadFromResultsJson = async (file: File) => {
+  const isValidEmail = (email?: string | null) =>
+    !!email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  // Determine index to jump to based on answered set and last updated id
+  const computeResumeIndex = (
+    answeredIds: string[],
+    lastUpdatedId: string | null,
+  ) => {
+    // Prefer first unanswered in current ordering
+    const answered = new Set(answeredIds);
+    const firstUn = questions.findIndex((q) => !answered.has(q.id));
+    if (firstUn >= 0) return firstUn;
+    // All answered: if lastUpdated exists, stay there; otherwise 0
+    if (lastUpdatedId) {
+      const li = questions.findIndex((q) => q.id === lastUpdatedId);
+      if (li >= 0) return li;
+    }
+    return 0;
+  };
+
+  // Load last progress for an email and jump
+  const loadProgress = async () => {
     try {
-      const text = await file.text();
-      const data = JSON.parse(text);
-      const rawResults = Array.isArray(data) ? data : data.results || [];
-
-      const builtQuestions: EvalQuestion[] = [];
-      const builtPairing: NonNullable<Submission["pairing"]> = [];
-
-      rawResults.forEach((r: any, i: number) => {
-        const qText = r.question || r.query || r.text || `Question ${i + 1}`;
-        const ans1 = stripDisclaimer(r.answer ?? "");
-        const ans2 = stripDisclaimer(r.answerByLLM ?? "");
-        if (!qText || (!ans1 && !ans2)) return;
-
-        // Randomize A/B mapping for anonymization
-        const flip = Math.random() < 0.5;
-        const id = r.id?.toString?.() || `q${i + 1}`;
-        const optionA = flip ? ans1 : ans2;
-        const optionB = flip ? ans2 : ans1;
-        const sourceA = flip ? "Answer" : "AnswerByLLM";
-        const sourceB = flip ? "AnswerByLLM" : "Answer";
-
-        builtQuestions.push({ id, text: qText, optionA, optionB });
-        builtPairing.push({ id, sourceA, sourceB, questionText: qText });
+      if (!isValidEmail(participant.email)) return;
+      const res = await fetch("/api/eval/progress", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ participant, sessionId }),
       });
-
-      if (!builtQuestions.length)
-        throw new Error("No valid questions found in JSON.");
-
-      setQuestions(builtQuestions);
-      setPairing(builtPairing);
-      setResponses(
-        builtQuestions.map((q) => ({ id: q.id, choice: null, feedback: "" })),
-      );
-      setIdx(0);
-      // no-op messaging removed
-    } catch (e: any) {
-      console.error(e);
-      // no-op messaging removed
+      if (!res.ok) return;
+      const data = (await res.json()) as {
+        ok: boolean;
+        sessionId: string | null;
+        answeredIds: string[];
+        lastUpdatedId: string | null;
+      };
+      if (!data?.ok) return;
+      if (data.sessionId) setSessionId(data.sessionId);
+      const target = computeResumeIndex(data.answeredIds || [], data.lastUpdatedId || null);
+      if (Number.isFinite(target)) setIdx(target as number);
+    } catch (e) {
+      // non-fatal
+      console.warn("progress load failed", e);
     }
   };
 
-  const loadFromEmbedded = async () => {
-    try {
-      // no-op messaging removed
-      // Prefer prebuilt questions JSON
-      let res = await fetch("/malaria-eval-questions.json", {
-        cache: "no-store",
-      });
-      if (res.ok) {
-        const data = await res.json();
-        const qs = (data.questions || []) as EvalQuestion[];
-        const pr = (data.pairing || []) as NonNullable<Submission["pairing"]>;
-        if (!qs.length) throw new Error("No questions found in prebuilt JSON");
-        setQuestions(qs);
-        setPairing(pr);
-        setResponses(qs.map((q) => ({ id: q.id, choice: null, feedback: "" })));
-        setIdx(0);
-        // no-op messaging removed
-        return;
-      }
+  // When email becomes valid (or questions change), attempt resume
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      if (!isValidEmail(participant.email)) return;
+      await loadProgress();
+      if (cancelled) return;
+    })();
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [participant.email, questions.length]);
 
-      // Fallback: derive from evaluation results JSON deterministically (A=Answer, B=AnswerByLLM)
-      res = await fetch("/malaria-evaluation-results.json", {
-        cache: "no-store",
+  const ensureSession = async () => {
+    if (!isValidEmail(participant.email)) return null;
+    try {
+      const res = await fetch("/api/eval/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ participant, sessionId }),
       });
-      if (!res.ok) throw new Error("Failed to load embedded results JSON");
-      const data = await res.json();
-      const rawResults = Array.isArray(data) ? data : data.results || [];
-      const qs: EvalQuestion[] = [];
-      const pr: NonNullable<Submission["pairing"]> = [];
-      rawResults.forEach((r: any, i: number) => {
-        const id = r.id?.toString?.() || `q${i + 1}`;
-        const text = r.question || r.query || r.text || `Question ${i + 1}`;
-        const a = r.answer ?? "";
-        const b = r.answerByLLM ?? "";
-        if (!text || (!a && !b)) return;
-        qs.push({ id, text, optionA: a, optionB: b });
-        pr.push({
-          id,
-          sourceA: "Answer",
-          sourceB: "AnswerByLLM",
-          questionText: text,
-        });
-      });
-      if (!qs.length)
-        throw new Error("No valid questions found in embedded results JSON");
-      setQuestions(qs);
-      setPairing(pr);
-      setResponses(qs.map((q) => ({ id: q.id, choice: null, feedback: "" })));
-      setIdx(0);
-      // no-op messaging removed
-    } catch (e: any) {
-      console.error(e);
-      // no-op messaging removed
+      if (!res.ok) throw new Error(await res.text());
+      const data = (await res.json()) as {
+        ok: boolean;
+        participantId: string;
+        sessionId: string;
+      };
+      if (data?.sessionId) setSessionId(data.sessionId);
+      return data.sessionId;
+    } catch (e) {
+      console.error("ensureSession failed", e);
+      return null;
     }
   };
 
-  // Auto-load removed: data is provided by getStaticProps for SSR consistency
+  const recordInteraction = async (
+    questionIdx: number,
+    choice: EvalChoice | null,
+    feedback?: string,
+  ) => {
+    try {
+      // Require email to persist
+      if (!isValidEmail(participant.email)) return;
+      const sid = sessionId || (await ensureSession());
+      if (!sid) return;
+      const q = questions[questionIdx];
+      if (!q) return;
+      const pr = pairing?.find((p) => p.id === q.id);
+      const startedAt = questionStartRef.current
+        ? new Date(questionStartRef.current).toISOString()
+        : null;
+      const spent = questionStartRef.current
+        ? Date.now() - questionStartRef.current
+        : null;
+      await fetch("/api/eval/interaction", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          participant,
+          sessionId: sid,
+          question: q,
+          pairing: pr,
+          choice,
+          feedback,
+          timeStarted: startedAt,
+          timeSpentMs: spent,
+        }),
+      });
+    } catch (e) {
+      console.error("recordInteraction failed", e);
+    }
+  };
 
   const handleSubmit = async () => {
+    // Validate email before submit
+    if (!isValidEmail(participant.email)) {
+      setEmailError("Please enter a valid email to submit.");
+      alert("Please enter a valid email to submit.");
+      return;
+    }
+    const sid = sessionId || (await ensureSession());
     const payload: Submission = {
       participant,
       responses,
       pairing,
+      // Include session id so server can mark end
+      // @ts-expect-error: extended field supported by API
+      sessionId: sid,
     };
     try {
       const res = await fetch("/api/eval/submit", {
@@ -315,26 +369,6 @@ export default function EvaluationPage({
     } catch (err: any) {
       console.error(err);
       alert("Submit failed: " + err?.message || String(err));
-    }
-  };
-
-  const exportQuestionsJSON = () => {
-    try {
-      const payload = { questions, pairing };
-      const blob = new Blob([JSON.stringify(payload, null, 2)], {
-        type: "application/json",
-      });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "malaria-eval-questions.json";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    } catch (e) {
-      console.error("Export failed", e);
-      alert("Failed to export questions JSON");
     }
   };
 
@@ -369,16 +403,42 @@ export default function EvaluationPage({
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="email">Email (optional)</Label>
+                <Label htmlFor="email">Email (required)</Label>
                 <Input
                   id="email"
                   type="email"
                   value={participant.email ?? ""}
                   placeholder="e.g., name@example.com"
-                  onChange={(e) =>
-                    setParticipant((p) => ({ ...p, email: e.target.value }))
-                  }
+                  required
+                  aria-invalid={!!emailError}
+                  aria-describedby={emailError ? "email-error" : undefined}
+                  onChange={(e) => {
+                    const v = e.target.value;
+                    setParticipant((p) => ({ ...p, email: v }));
+                    if (!v) setEmailError("Email is required");
+                    else if (!isValidEmail(v))
+                      setEmailError("Enter a valid email address");
+                    else setEmailError("");
+                    // If email changes, force new session on next persist
+                    setSessionId(null);
+                  }}
+                  onBlur={(e) => {
+                    const v = e.target.value;
+                    if (!v) setEmailError("Email is required");
+                    else if (!isValidEmail(v))
+                      setEmailError("Enter a valid email address");
+                    else {
+                      setEmailError("");
+                      // attempt resume on blur when email becomes valid
+                      loadProgress();
+                    }
+                  }}
                 />
+                {emailError ? (
+                  <div id="email-error" className="text-xs text-red-600">
+                    {emailError}
+                  </div>
+                ) : null}
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="specialty">Specialty (optional)</Label>
@@ -458,13 +518,19 @@ export default function EvaluationPage({
               label="Option A"
               body={current?.optionA ?? ""}
               selected={currentResp?.choice === "A"}
-              onSelect={() => setChoice("A")}
+              onSelect={() => {
+                setChoice("A");
+                recordInteraction(idx, "A", currentResp?.feedback ?? "");
+              }}
             />
             <OptionBlock
               label="Option B"
               body={current?.optionB ?? ""}
               selected={currentResp?.choice === "B"}
-              onSelect={() => setChoice("B")}
+              onSelect={() => {
+                setChoice("B");
+                recordInteraction(idx, "B", currentResp?.feedback ?? "");
+              }}
             />
           </div>
 
@@ -472,7 +538,11 @@ export default function EvaluationPage({
             <Label className="mb-2 block text-sm">Pick the better option</Label>
             <RadioGroup
               value={(currentResp?.choice as string) ?? ""}
-              onValueChange={(v) => setChoice(v as EvalChoice)}
+              onValueChange={(v) => {
+                const c = v as EvalChoice;
+                setChoice(c);
+                recordInteraction(idx, c, currentResp?.feedback ?? "");
+              }}
               className="grid gap-2 md:grid-cols-4"
             >
               <RadioRow value="A" label="Option A better" />
@@ -490,6 +560,13 @@ export default function EvaluationPage({
               id="feedback"
               value={currentResp?.feedback ?? ""}
               onChange={(e) => setFeedback(e.target.value)}
+              onBlur={(e) => {
+                recordInteraction(
+                  idx,
+                  currentResp?.choice ?? null,
+                  e.target.value,
+                );
+              }}
               rows={5}
               placeholder="Write your comments (optional)"
             />
@@ -525,7 +602,10 @@ export default function EvaluationPage({
               ) : (
                 <Button
                   onClick={handleSubmit}
-                  disabled={responses.some((r) => r.choice === null)}
+                  disabled={
+                    responses.some((r) => r.choice === null) ||
+                    !isValidEmail(participant.email)
+                  }
                 >
                   Submit All
                 </Button>

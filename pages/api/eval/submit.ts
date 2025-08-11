@@ -1,9 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { upsertParticipant, markSessionEnded } from "@/lib/eval/repo";
 
 // Payload shape replicated from the client page
 export type EvalChoice = "A" | "B" | "tie" | "neither";
 export type Submission = {
   participant: {
+    email?: string;
     specialty?: string;
     years?: string;
     region?: string;
@@ -19,6 +21,7 @@ export type Submission = {
     sourceB: "Answer" | "AnswerByLLM";
     questionText: string;
   }>;
+  sessionId?: string | null;
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -27,17 +30,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  const SHEETS_WEB_APP_URL = process.env.SHEETS_WEB_APP_URL;
-  if (!SHEETS_WEB_APP_URL) {
-    return res.status(500).json({ error: "Missing SHEETS_WEB_APP_URL env var on server" });
-  }
-
   try {
     const body = req.body as Submission;
 
     // basic validation
     if (!body || !Array.isArray(body.responses)) {
       return res.status(400).json({ error: "Invalid payload" });
+    }
+
+    const email = (body?.participant?.email || "").trim().toLowerCase();
+    if (!email) {
+      return res.status(400).json({ error: "Email is required" });
+    }
+
+    // Upsert participant
+    await upsertParticipant({
+      email,
+      specialty: body.participant?.specialty,
+      years: body.participant?.years,
+      region: body.participant?.region,
+    });
+
+    // If a session is provided, mark it ended
+    if (body.sessionId) {
+      await markSessionEnded(body.sessionId, email);
     }
 
     // Build a record envelope with server metadata
@@ -56,28 +72,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         null,
     };
 
-    // Forward to Google Apps Script Web App (recommended simplest way)
-    const gRes = await fetch(SHEETS_WEB_APP_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(record),
-    });
-
-    if (!gRes.ok) {
-      const text = await gRes.text();
-      return res.status(502).json({ error: "Sheets webhook failed", status: gRes.status, body: text });
+    // Optionally forward to Google Sheets if configured
+    const SHEETS_WEB_APP_URL = process.env.SHEETS_WEB_APP_URL;
+    if (SHEETS_WEB_APP_URL) {
+      const gRes = await fetch(SHEETS_WEB_APP_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(record),
+      });
+      if (!gRes.ok) {
+        const text = await gRes.text();
+        return res
+          .status(502)
+          .json({ error: "Sheets webhook failed", status: gRes.status, body: text });
+      }
+      // Try to parse response if JSON; otherwise just acknowledge
+      let data: any = null;
+      const ct = gRes.headers.get("content-type") || "";
+      if (ct.includes("application/json")) {
+        try {
+          data = await gRes.json();
+        } catch {}
+      } else {
+        try {
+          data = await gRes.text();
+        } catch {}
+      }
+      return res.status(200).json({ ok: true, sheets: data ?? null });
     }
 
-    // Try to parse response if JSON; otherwise just acknowledge
-    let data: any = null;
-    const ct = gRes.headers.get("content-type") || "";
-    if (ct.includes("application/json")) {
-      try { data = await gRes.json(); } catch {}
-    } else {
-      try { data = await gRes.text(); } catch {}
-    }
-
-    return res.status(200).json({ ok: true, sheets: data ?? null });
+    return res.status(200).json({ ok: true });
   } catch (err: any) {
     console.error("/api/eval/submit error", err);
     return res.status(500).json({ error: err?.message || String(err) });
