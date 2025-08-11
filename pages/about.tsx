@@ -15,13 +15,13 @@ const teamMembers = [
     name: "Praveen Kumar Saini",
     credentials: "Cofounder & CTO",
     role: "Owns product roadmap and AI development",
-    image: "/images/team/praveen-kumar-saini.jpg",
+    image: "/praveen.png",
   },
   {
     name: "Dr. Arpit Tyagi",
     credentials: "Clinical Lead & Cofounder",
     role: "Defines clinical workflows and use cases",
-    image: "/images/team/dr_arpit_tyagi.jpg",
+    image: "/dr_arpit_tyagi.jpeg",
   },
 ];
 
