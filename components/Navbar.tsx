@@ -12,6 +12,7 @@ export default function Navbar() {
     { href: "/features", label: "Features" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact Us" },
+    { href: "/waitlist", label: "Waitlist" },
   ];
 
   // Close mobile menu on route change
@@ -32,7 +33,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="text-xl font-semibold text-foreground hover:text-primary transition-colors">
-            Sushruta Health
+            Sushrut Health
           </Link>
 
           {/* Desktop Navigation */}

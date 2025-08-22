@@ -71,3 +71,24 @@ export const responses = pgTable(
 
 // Optional: CHECK constraint for choice; Drizzle currently does not expose check builder universally
 export const choiceConstraint = sql`alter table "responses" add constraint if not exists "chk_choice" check (choice in ('A','B','tie','neither'))`;
+
+export const waitlist = pgTable(
+  "waitlist",
+  {
+    id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+    email: text("email").notNull().unique(),
+    name: text("name").notNull(),
+    userType: text("user_type").notNull(), // 'doctor' or 'student'
+    specialty: text("specialty"),
+    institution: text("institution"),
+    yearsExperience: text("years_experience"),
+    phone: text("phone"),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
+  },
+  (tbl) => ({
+    emailIndex: index("idx_waitlist_email").on(tbl.email),
+    userTypeIndex: index("idx_waitlist_user_type").on(tbl.userType),
+    createdAtIndex: index("idx_waitlist_created_at").on(tbl.createdAt),
+  }),
+);

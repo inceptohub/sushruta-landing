@@ -64,7 +64,7 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        "sushruta-purple": {
+        "sushrut-purple": {
           50: "#f3f1ff",
           100: "#ebe5ff",
           200: "#d9ceff",
@@ -77,7 +77,7 @@ export default {
           900: "#4b05ad",
           950: "#2c0076",
         },
-        "sushruta-blue": {
+        "sushrut-blue": {
           50: "#eff6ff",
           100: "#dbeafe",
           200: "#bfdbfe",
