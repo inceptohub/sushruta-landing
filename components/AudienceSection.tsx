@@ -17,7 +17,7 @@ export default function AudienceSection() {
             Built for Every Stage of Your Medical Journey
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Whether you're practicing medicine or learning it, Sushruta Health
+            Whether you're practicing medicine or learning it, sushrut Health
             adapts to support your unique needs and workflow.
           </p>
         </div>
@@ -28,11 +28,11 @@ export default function AudienceSection() {
             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 lg:p-10 h-full hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
               {/* Header */}
               <div className="flex items-center space-x-4 mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-sushruta-blue-500 to-sushruta-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-br from-sushrut-blue-500 to-sushrut-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
                   <Stethoscope className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <span className="text-sm font-semibold text-sushruta-blue-600 uppercase tracking-wide">
+                  <span className="text-sm font-semibold text-sushrut-blue-600 uppercase tracking-wide">
                     Case Discussion
                   </span>
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
@@ -57,24 +57,24 @@ export default function AudienceSection() {
               {/* Features */}
               <div className="space-y-4 mb-8">
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-sushruta-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Clock className="w-3 h-3 text-sushruta-blue-600" />
+                  <div className="w-6 h-6 bg-sushrut-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Clock className="w-3 h-3 text-sushrut-blue-600" />
                   </div>
                   <span className="text-gray-700">
                     Real-time clinical decision support during consultations
                   </span>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-sushruta-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Target className="w-3 h-3 text-sushruta-blue-600" />
+                  <div className="w-6 h-6 bg-sushrut-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Target className="w-3 h-3 text-sushrut-blue-600" />
                   </div>
                   <span className="text-gray-700">
                     Automated documentation and encounter summaries
                   </span>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-sushruta-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Users className="w-3 h-3 text-sushruta-blue-600" />
+                  <div className="w-6 h-6 bg-sushrut-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Users className="w-3 h-3 text-sushrut-blue-600" />
                   </div>
                   <span className="text-gray-700">
                     Support for both in-person and telemedicine workflows
@@ -83,7 +83,7 @@ export default function AudienceSection() {
               </div>
 
               {/* CTA */}
-              <button className="inline-flex items-center text-sushruta-blue-600 font-semibold hover:text-sushruta-blue-700 transition-colors duration-200 group">
+              <button className="inline-flex items-center text-sushrut-blue-600 font-semibold hover:text-sushrut-blue-700 transition-colors duration-200 group">
                 Learn more about Case Discussion
                 <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" />
               </button>
@@ -95,11 +95,11 @@ export default function AudienceSection() {
             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 lg:p-10 h-full hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
               {/* Header */}
               <div className="flex items-center space-x-4 mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-sushruta-purple-500 to-sushruta-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-br from-sushrut-purple-500 to-sushrut-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
                   <GraduationCap className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <span className="text-sm font-semibold text-sushruta-purple-600 uppercase tracking-wide">
+                  <span className="text-sm font-semibold text-sushrut-purple-600 uppercase tracking-wide">
                     Clinical Evaluation
                   </span>
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
@@ -123,24 +123,24 @@ export default function AudienceSection() {
               {/* Features */}
               <div className="space-y-4 mb-8">
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-sushruta-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Stethoscope className="w-3 h-3 text-sushruta-purple-600" />
+                  <div className="w-6 h-6 bg-sushrut-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Stethoscope className="w-3 h-3 text-sushrut-purple-600" />
                   </div>
                   <span className="text-gray-700">
                     Practice history taking with guided prompts
                   </span>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-sushruta-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <BookOpen className="w-3 h-3 text-sushruta-purple-600" />
+                  <div className="w-6 h-6 bg-sushrut-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <BookOpen className="w-3 h-3 text-sushrut-purple-600" />
                   </div>
                   <span className="text-gray-700">
                     Interactive case simulations with step-by-step guidance
                   </span>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-sushruta-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Target className="w-3 h-3 text-sushruta-purple-600" />
+                  <div className="w-6 h-6 bg-sushrut-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Target className="w-3 h-3 text-sushrut-purple-600" />
                   </div>
                   <span className="text-gray-700">
                     Detailed explanations and clinical reasoning for every
@@ -148,8 +148,8 @@ export default function AudienceSection() {
                   </span>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-sushruta-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <GraduationCap className="w-3 h-3 text-sushruta-purple-600" />
+                  <div className="w-6 h-6 bg-sushrut-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <GraduationCap className="w-3 h-3 text-sushrut-purple-600" />
                   </div>
                   <span className="text-gray-700">
                     Exam preparation with viva questions and practice scenarios
@@ -158,7 +158,7 @@ export default function AudienceSection() {
               </div>
 
               {/* CTA */}
-              <button className="inline-flex items-center text-sushruta-purple-600 font-semibold hover:text-sushruta-purple-700 transition-colors duration-200 group">
+              <button className="inline-flex items-center text-sushrut-purple-600 font-semibold hover:text-sushrut-purple-700 transition-colors duration-200 group">
                 Learn more about Clinical Evaluation
                 <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" />
               </button>

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { scenarios } from "../lib/scenarios";
 
@@ -8,7 +7,7 @@ export default function HomePage() {
   const [query, setQuery] = useState("");
   const [activeMode, setActiveMode] = useState<"student" | "opd">("student");
   const [demoResponseContent, setDemoResponseContent] = useState<React.ReactNode | null>(null);
-  const router = useRouter();
+    const router = useRouter();
 
   // Add global keyboard shortcut for Cmd/Ctrl+Enter
   useEffect(() => {
@@ -68,7 +67,7 @@ export default function HomePage() {
         {/* Brand Block */}
         <div className="text-center space-y-3">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-satoshi font-bold mb-2">
-            Sushruta Health
+            Sushrut Health
           </h1>
           <h2 className="text-xl md:text-2xl font-normal text-[#111827] font-inter">
             Your intelligent co-pilot for clinical decision-making.
@@ -135,7 +134,7 @@ export default function HomePage() {
               disabled={!query.trim()}
               className="absolute bottom-4 right-4 btn-primary text-sm px-4 py-2 disabled:opacity-50"
             >
-              Ask Sushruta
+              Ask Sushrut
             </button>
           </div>
 
@@ -192,6 +191,7 @@ export default function HomePage() {
             to analyze
           </p>
         </div>
+
       </div>
     </div>
   );
