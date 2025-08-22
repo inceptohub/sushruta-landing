@@ -13,7 +13,7 @@ const steps = [
     icon: Upload,
     title: "Input Case",
     description:
-      "Enter a patient's case history or let Sushruta listen during a teleconsultation.",
+      "Enter a patient's case history or let sushrut listen during a teleconsultation.",
     details: [
       "Type or dictate patient symptoms",
       "Upload medical records or images",
@@ -31,7 +31,7 @@ const steps = [
     icon: MessageCircle,
     title: "Interact & Refine",
     description:
-      "Use Sushruta's guided questions and suggestions to inquire further and input findings.",
+      "Use sushrut's guided questions and suggestions to inquire further and input findings.",
     details: [
       "AI-suggested follow-up questions",
       "Dynamic examination prompts",
@@ -104,7 +104,7 @@ export default function HowItWorksSection() {
                         <Icon className="w-8 h-8 text-white" />
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-sushruta-blue-600 uppercase tracking-wide">
+                        <div className="text-sm font-semibold text-sushrut-blue-600 uppercase tracking-wide">
                           Step {step.id}
                         </div>
                         <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
@@ -122,14 +122,14 @@ export default function HowItWorksSection() {
                     <div className="space-y-3">
                       {step.details.map((detail, idx) => (
                         <div key={idx} className="flex items-center space-x-3">
-                          <CheckCircle className="w-5 h-5 text-sushruta-blue-600 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-sushrut-blue-600 flex-shrink-0" />
                           <span className="text-gray-700">{detail}</span>
                         </div>
                       ))}
                     </div>
 
                     {/* Action */}
-                    <button className="inline-flex items-center text-sushruta-blue-600 font-semibold hover:text-sushruta-blue-700 transition-colors duration-200 group">
+                    <button className="inline-flex items-center text-sushrut-blue-600 font-semibold hover:text-sushrut-blue-700 transition-colors duration-200 group">
                       Try Step {step.id}
                       <Play className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" />
                     </button>
@@ -142,7 +142,7 @@ export default function HowItWorksSection() {
                     {/* Main Card */}
                     <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8 relative overflow-hidden">
                       {/* Background Pattern */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-sushruta-blue-50/50 to-sushruta-purple-50/50"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-sushrut-blue-50/50 to-sushrut-purple-50/50"></div>
 
                       {/* Content */}
                       <div className="relative z-10">
@@ -176,8 +176,8 @@ export default function HowItWorksSection() {
 
                           {step.visual.type === "interaction" && (
                             <div className="space-y-3">
-                              <div className="bg-sushruta-blue-50 rounded-lg p-4 border border-sushruta-blue-200">
-                                <div className="text-sm text-sushruta-blue-600 mb-2">
+                              <div className="bg-sushrut-blue-50 rounded-lg p-4 border border-sushrut-blue-200">
+                                <div className="text-sm text-sushrut-blue-600 mb-2">
                                   AI Assistant:
                                 </div>
                                 <div className="text-gray-900 whitespace-pre-line">
@@ -225,7 +225,7 @@ export default function HowItWorksSection() {
                     {/* Connection Arrow */}
                     {index < steps.length - 1 && (
                       <div className="hidden lg:block absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-                        <ArrowRight className="w-6 h-6 text-sushruta-blue-400 rotate-90" />
+                        <ArrowRight className="w-6 h-6 text-sushrut-blue-400 rotate-90" />
                       </div>
                     )}
                   </div>
@@ -242,7 +242,7 @@ export default function HowItWorksSection() {
               Ready to experience the complete workflow?
             </h3>
             <p className="text-gray-600 mb-6">
-              See how Sushruta Health can transform your clinical practice with
+              See how sushrut Health can transform your clinical practice with
               intelligent, step-by-step guidance.
             </p>
             <button className="btn-primary">

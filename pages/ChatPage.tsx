@@ -117,7 +117,7 @@ export default function ChatPage() {
       <header className="bg-white/80 backdrop-blur-md border-b border-[#E5E7EB] py-4 px-6 shadow-sm">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold text-foreground">
-            Sushruta AI Chat
+            sushrut AI Chat
           </h1>
           <button
             onClick={() => router.push('/')}
@@ -137,7 +137,7 @@ export default function ChatPage() {
             <div className="text-center py-12">
               <div className="bg-white/80 backdrop-blur-md border border-white/30 rounded-xl p-8 shadow-lg">
                 <h2 className="text-xl font-semibold text-foreground mb-2">
-                  Welcome to Sushruta AI
+                  Welcome to sushrut AI
                 </h2>
                 <p className="text-foreground/70">
                   Start a conversation by typing your medical question below.
@@ -153,7 +153,7 @@ export default function ChatPage() {
                 {message.role === "assistant" && (
                   <Image
                     src="/logo-sushruta.svg"
-                    alt="Sushruta Health"
+                    alt="sushrut Health"
                     width={32}
                     height={32}
                     className="w-8 h-8 rounded-full bg-[#E5E7EB] border border-[#E5E7EB] mr-3"
