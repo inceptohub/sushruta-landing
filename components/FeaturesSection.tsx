@@ -17,7 +17,7 @@ const features = [
     icon: Brain,
     title: "Intelligent Clinical Prompting",
     description:
-      "From a patient's initial complaint, Sushruta suggests relevant specialties, differential diagnoses, and targeted questions to ask next.",
+      "From a patient's initial complaint, sushrut suggests relevant specialties, differential diagnoses, and targeted questions to ask next.",
     details: [
       "AI-powered specialty recommendations",
       "Dynamic differential diagnosis generation",
@@ -163,7 +163,7 @@ export default function FeaturesSection() {
                   key={feature.id}
                   className={`group cursor-pointer transition-all duration-300 ${
                     isActive
-                      ? "bg-gradient-to-r from-sushruta-blue-50 to-sushruta-purple-50 border-sushruta-blue-200"
+                      ? "bg-gradient-to-r from-sushrut-blue-50 to-sushrut-purple-50 border-sushrut-blue-200"
                       : "bg-gray-50 border-gray-200 hover:bg-gray-100"
                   } border rounded-2xl p-6`}
                   onClick={() => setActiveFeature(feature.id)}
@@ -193,7 +193,7 @@ export default function FeaturesSection() {
                         <ChevronRight
                           className={`w-5 h-5 transition-all duration-300 ${
                             isActive
-                              ? "text-sushruta-blue-600 rotate-90"
+                              ? "text-sushrut-blue-600 rotate-90"
                               : "text-gray-400 group-hover:text-gray-600"
                           }`}
                         />
@@ -216,7 +216,7 @@ export default function FeaturesSection() {
                               key={idx}
                               className="flex items-center space-x-2"
                             >
-                              <CheckCircle className="w-4 h-4 text-sushruta-blue-600 flex-shrink-0" />
+                              <CheckCircle className="w-4 h-4 text-sushrut-blue-600 flex-shrink-0" />
                               <span className="text-sm text-gray-600">
                                 {detail}
                               </span>
@@ -265,7 +265,7 @@ export default function FeaturesSection() {
 
               {/* Action */}
               <div className="mt-6 pt-4 border-t border-gray-200">
-                <button className="inline-flex items-center text-sushruta-blue-600 font-medium hover:text-sushruta-blue-700 transition-colors duration-200 group">
+                <button className="inline-flex items-center text-sushrut-blue-600 font-medium hover:text-sushrut-blue-700 transition-colors duration-200 group">
                   See this feature in action
                   <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" />
                 </button>
