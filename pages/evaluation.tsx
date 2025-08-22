@@ -376,7 +376,7 @@ export default function EvaluationPage({
     <div className="mx-auto max-w-4xl p-4 pb-28">
       <header className="mb-6 space-y-2">
         <h1 className="text-3xl font-semibold tracking-tight">
-          Sushruta Clinical Decision Support – Evaluation
+          Sushrut Clinical Decision Support – Evaluation
         </h1>
         <p className="text-sm text-muted-foreground">
           You will see a clinical question and two anonymized options (A and B).
