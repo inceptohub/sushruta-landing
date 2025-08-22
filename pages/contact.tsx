@@ -86,7 +86,7 @@ export default function ContactPage() {
           <h1>Contact Us</h1>
           <p className="text-lg text-muted-foreground">
             We'd love to hear from you. Whether you're interested in learning
-            more about Sushruta Health, have questions about our platform, or
+            more about sushrut Health, have questions about our platform, or
             want to discuss partnership opportunities, please don't hesitate to
             reach out.
           </p>
@@ -239,7 +239,7 @@ export default function ContactPage() {
               <p className="font-medium mb-1">How do I request a demo?</p>
               <p className="text-muted-foreground">
                 Simply mention "demo request" in your message above, and we'll
-                schedule a personalized demonstration of Sushruta Health
+                schedule a personalized demonstration of sushrut Health
                 tailored to your specific needs.
               </p>
             </div>

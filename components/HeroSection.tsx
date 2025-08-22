@@ -21,7 +21,7 @@ export default function HeroSection() {
           {/* Main Headline */}
           <div className="space-y-6 animate-fade-in">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-              Sushruta Health: Empowering Medical Professionals and Students
+              Sushrut Health: Empowering Medical Professionals and Students
               with{" "}
               <span className="text-blue-200">
                 Intelligent Clinical Support
