@@ -69,7 +69,7 @@ export default function FeaturesPage() {
         <div className="text-center space-y-4">
           <h1>Features</h1>
           <p className="text-lg max-w-2xl mx-auto">
-            Real-world scenarios demonstrating how Sushruta Health enhances
+            Real-world scenarios demonstrating how Sushrut Health enhances
             clinical decision-making for students and practicing clinicians.
           </p>
         </div>
@@ -88,7 +88,7 @@ export default function FeaturesPage() {
                 },
                 {
                   role: "assistant",
-                  content: renderSushrutaOutput(scenario.feature, scenario.sushrutaOutput),
+                  content: renderSushrutaOutput(scenario.feature, scenario.sushrutOutput),
                 },
               ]}
             />

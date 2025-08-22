@@ -54,7 +54,7 @@ export default function FinalCTASection() {
           {/* Benefits List */}
           <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 mb-12">
             <h3 className="text-xl font-semibold text-white mb-6">
-              What you get with Sushruta Health:
+              What you get with sushrut Health:
             </h3>
             <div className="grid md:grid-cols-2 gap-4 text-left">
               <div className="flex items-center space-x-3">
@@ -123,7 +123,7 @@ export default function FinalCTASection() {
               ))}
             </div>
             <blockquote className="text-lg text-blue-100 italic mb-4">
-              "Sushruta Health has revolutionized how I practice medicine. The
+              "sushrut Health has revolutionized how I practice medicine. The
               AI-powered insights help me make better diagnoses faster, and my
               students love the interactive learning scenarios."
             </blockquote>

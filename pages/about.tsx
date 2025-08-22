@@ -5,9 +5,9 @@ import { DiagnosticErrorChart } from "../components/charts/DiagnosticErrorChart"
 import { ClinicianTimeChart } from "../components/charts/ClinicianTimeChart";
 
 export const metadata: Metadata = {
-  title: "About Us | Sushruta Health",
+  title: "About Us | sushrut Health",
   description:
-    "Learn about the mission of Sushruta Health to mitigate cognitive burden in medicine and meet the team behind our intelligent clinical co-pilot.",
+    "Learn about the mission of sushrut Health to mitigate cognitive burden in medicine and meet the team behind our intelligent clinical co-pilot.",
 };
 
 const teamMembers = [
@@ -35,7 +35,7 @@ const AboutPage = () => {
         <h1>Augmenting Clinical Acumen.</h1>
         <p className="mt-4">
           In a nation of 1.4 billion, the cognitive burden on our clinicians is
-          immense. Sushruta Health was founded to address this uniquely Indian
+          immense. sushrut Health was founded to address this uniquely Indian
           challenge. We are building an intelligent co-pilot to augment—not
           replace—the clinician, refining diagnostic accuracy and restoring time
           for patient care in our high-volume environment.
@@ -86,7 +86,7 @@ const AboutPage = () => {
       <section id="solution" className="max-w-4xl mx-auto mb-20 md:mb-28">
         <h2 className="text-center mb-12">An Evidence-Based Co-Pilot</h2>
         <p className="text-center mb-12">
-          Sushruta Health is an augmented intelligence platform that integrates
+          sushrut Health is an augmented intelligence platform that integrates
           into the clinical workflow. It leverages a proprietary knowledge
           graph, trained on Indian epidemiological data, and large language
           models to provide real-time, evidence-based support.

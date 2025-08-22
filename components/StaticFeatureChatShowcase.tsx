@@ -38,7 +38,7 @@ export default function StaticFeatureChatShowcase({
                 {/* Sushruta Logo Avatar */}
                 <Image
                   src="/logo-sushruta.svg"
-                  alt="Sushruta Health"
+                  alt="sushrut Health"
                   width={32}
                   height={32}
                   className="w-8 h-8 rounded-full bg-[#E5E7EB] border border-[#E5E7EB]"
